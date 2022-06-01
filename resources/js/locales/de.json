@@ -34,8 +34,8 @@
     },
     "languages": {
         "de": "Deutsch",
-        "fr": "Französisch",
-        "en": "Englisch"
+        "fr": "Français",
+        "en": "English"
     },
     "snackbar": {
         "retry": "Wiederholen",
@@ -210,7 +210,7 @@
             "imageCopyInfo": "© Foto: {photographer}",
             "generate": "Bild generieren",
             "save": "Bild speichern",
-            "placeholderDisabledSave": "Replace the image's background, to save the image.",
+            "placeholderDisabledSave": "Ersetze den Hintergrund des Bildes, um das Bild zu speichern.",
             "sizes": {
                 "square": "Quadratisch",
                 "fbTimeline": "Facebook Timeline Bild",

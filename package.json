@@ -8,7 +8,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.24",
+        "axios": "^0.28",
         "bootstrap": "^4.0.0",
         "bootstrap-material-design-icons": "^2.2.0",
         "browser-sync": "^2.26.7",

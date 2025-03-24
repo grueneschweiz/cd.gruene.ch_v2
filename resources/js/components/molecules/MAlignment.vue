@@ -34,7 +34,7 @@
 
             options() {
                 if (this.hasBars) {
-                    if(this.getStyleSet === 'greenV2' || this.getStyleSet === 'greenV2Centered') {
+                    if(this.getStyleSet === 'green2025' || this.getStyleSet === 'green2025Centered') {
                         return [
                             {value: Alignments.left, text: this.$t('images.create.barsLeft')},
                             {value: Alignments.center, text: this.$t('images.create.barsCentered')},
@@ -61,10 +61,10 @@
         },
         methods: {
             applyCorrectStyleSet(newAlignment) {
-                if (this.getStyleSet === 'greenV2' && newAlignment === Alignments.center) {
-                    this.$store.commit('canvas/setStyleSet', 'greenV2Centered');
-                } else if (this.getStyleSet === 'greenV2Centered' && newAlignment !== Alignments.center) {
-                    this.$store.commit('canvas/setStyleSet', 'greenV2');
+                if (this.getStyleSet === 'green2025' && newAlignment === Alignments.center) {
+                    this.$store.commit('canvas/setStyleSet', 'green2025Centered');
+                } else if (this.getStyleSet === 'green2025Centered' && newAlignment !== Alignments.center) {
+                    this.$store.commit('canvas/setStyleSet', 'green2025');
                 }
             }
         }

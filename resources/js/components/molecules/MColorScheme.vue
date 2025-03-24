@@ -40,18 +40,18 @@ import {mapGetters} from "vuex";
 
             isColorSchemeHidden() {
                 return this.backgroundType === BackgroundTypes.gradient
-                    || this.styleSet === StyleSetTypes.greenV2
-                    || this.styleSet === StyleSetTypes.greenV2Centered
+                    || this.styleSet === StyleSetTypes.green2025
+                    || this.styleSet === StyleSetTypes.green2025Centered
             },
 
             options() {
                 const options = [];
 
-                if (StyleSetTypes.greenV2 === this.styleSet
-                    || StyleSetTypes.greenV2Centered === this.styleSet) {
+                if (StyleSetTypes.green2025 === this.styleSet
+                    || StyleSetTypes.green2025Centered === this.styleSet) {
 
                     options.push(
-                        {value: ColorSchemes.greenV2, text: this.$t('images.create.greenV2')}
+                        {value: ColorSchemes.green2025, text: this.$t('images.create.green2025')}
                     );
 
                     return options
@@ -86,7 +86,7 @@ import {mapGetters} from "vuex";
                 } else if (this.scheme === ColorSchemes.green) {
                     this.scheme = ColorSchemes.green;
                 } else {
-                    this.scheme = ColorSchemes.greenV2;
+                    this.scheme = ColorSchemes.green2025;
                 }
             },
         },

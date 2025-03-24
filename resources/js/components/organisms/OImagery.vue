@@ -43,8 +43,8 @@
 
             <MAlignment
                 v-if="styleSet === styleSetTypes.green ||
-                styleSet === styleSetTypes.greenV2 ||
-                styleSet === styleSetTypes.greenV2Centered"
+                styleSet === styleSetTypes.green2025 ||
+                styleSet === styleSetTypes.green2025Centered"
             />
 
             <MColorScheme/>

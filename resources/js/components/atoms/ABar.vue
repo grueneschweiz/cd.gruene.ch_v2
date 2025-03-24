@@ -72,8 +72,8 @@
             },
 
             barSchema() {
-                if(!this.isSubline && ColorSchemes.greenV2 === this.colorSchema) {
-                    return BarSchemes.greenV2
+                if(!this.isSubline && ColorSchemes.green2025 === this.colorSchema) {
+                    return BarSchemes.green2025
                 }
 
                 if (BarSchemes.magenta === this.bar.schema) {
@@ -144,8 +144,8 @@
                     case BarSchemes.transparent:
                         return 'dark'
 
-                    case BarSchemes.greenV2:
-                        return 'greenV2' //TODO MSC
+                    case BarSchemes.green2025:
+                        return 'green2025' //TODO MSC
 
                     default:
                         return 'green'

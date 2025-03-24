@@ -8,7 +8,7 @@ import { Alignments } from "../../Constants";
  */
 const layerPaddingFactor = 0.07;
 
-export default class BarLayerGreenV2 extends BarLayerGreen {
+export default class BarLayerGreen2025 extends BarLayerGreen {
 
     constructor(canvas, context) {
         super(canvas, context);

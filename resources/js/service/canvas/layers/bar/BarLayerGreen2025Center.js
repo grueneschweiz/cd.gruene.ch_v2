@@ -1,7 +1,7 @@
 import {Alignments} from "../../Constants";
-import BarLayerGreenV2 from "./BarLayerGreenV2";
+import BarLayerGreen2025 from "./BarLayerGreen2025";
 
-export default class BarLayerGreenV2Center extends BarLayerGreenV2 {
+export default class BarLayerGreen2025Center extends BarLayerGreen2025 {
 
     constructor(canvas, context) {
         super(canvas, context);

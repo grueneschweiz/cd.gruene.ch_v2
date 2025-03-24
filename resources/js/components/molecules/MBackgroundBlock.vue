@@ -245,8 +245,8 @@ import {mapGetters} from "vuex";
             },
 
             iconsBackgroundAvailable() {
-                return this.styleSet === StyleSetTypes.greenV2
-                    || this.styleSet === StyleSetTypes.greenV2Centered;
+                return this.styleSet === StyleSetTypes.green2025
+                    || this.styleSet === StyleSetTypes.green2025Centered;
             },
 
             acceptedMimeTypes() {
@@ -396,7 +396,7 @@ import {mapGetters} from "vuex";
                     && BackgroundTypes.placeholder === this.backgroundType) {
                     this.backgroundType = BackgroundTypes.gradient
                 }
-                if ((StyleSetTypes.greenV2 === valueNew || StyleSetTypes.greenV2Centered === valueNew)
+                if ((StyleSetTypes.green2025 === valueNew || StyleSetTypes.green2025Centered === valueNew)
                     && BackgroundTypes.gradient === this.backgroundType) {
                     this.backgroundType = BackgroundTypes.icons //TODO msc only when the button itself is clicked, the icon Background is loaded
                 }

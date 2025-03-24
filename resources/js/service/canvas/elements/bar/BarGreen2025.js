@@ -1,14 +1,14 @@
 import {
     BarSchemes as Schemes
-} from "./../../Constants";
+} from "../../Constants";
 
 import BarGreen from "./BarGreen";
 
-export default class BarGreenV2 extends BarGreen {
+export default class BarGreen2025 extends BarGreen {
 
     constructor() {
         super();
-        this._schema = Schemes.greenV2;
+        this._schema = Schemes.green2025;
     }
 
     _setBarOversize() {

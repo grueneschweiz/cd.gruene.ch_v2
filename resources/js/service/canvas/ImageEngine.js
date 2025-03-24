@@ -370,7 +370,7 @@ export default class ImageEngine {
             this._shadowEngine.draw(forceRepaint);
         }
 
-        if (this._styleSet === StyleSetTypes.green || this._styleSet === StyleSetTypes.greenV2) { //TODO MSC
+        if (this._styleSet === StyleSetTypes.green || this._styleSet === StyleSetTypes.green2025) { //TODO MSC
             this._borderEngine.draw(forceRepaint);
         }
 

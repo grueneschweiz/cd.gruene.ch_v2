@@ -64,8 +64,8 @@ export const ImageSizes = [
         excludeStyleSets: [
             StyleSetTypes.green, 
             StyleSetTypes.greenCentered, 
-            StyleSetTypes.greenV2, 
-            StyleSetTypes.greenV2Centered
+            StyleSetTypes.green2025, 
+            StyleSetTypes.green2025Centered
         ],
         media: Media.screen,
         rotatable: false,

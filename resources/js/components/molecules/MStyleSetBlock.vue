@@ -11,14 +11,14 @@
                 type="radio"
             >{{$t('images.create.styleSetGreen')}}
             </label>
-            <label :class="{'active': isGreenV2StyleSet}"
+            <label :class="{'active': isGreen2025StyleSet}"
                class="btn btn-secondary btn-sm">
             <input
                 v-model="styleSet"
-                :value="greenV2StyleSetButtonValue"
+                :value="green2025StyleSetButtonValue"
                 name="styleSet"
                 type="radio"
-            >{{$t('images.create.styleSetGreenV2')}}
+            >{{$t('images.create.styleSetGreen2025')}}
             </label>
             <label :class="{'active': styleSet === styleSetTypes.young}"
                class="btn btn-secondary btn-sm">
@@ -78,8 +78,8 @@
                 if (logoTypes.length === 0) {
                     return [
                         StyleSetTypes.green,
-                        StyleSetTypes.greenV2,
-                        StyleSetTypes.greenV2Centered,
+                        StyleSetTypes.green2025,
+                        StyleSetTypes.green2025Centered,
                         StyleSetTypes.young
                     ]
                 }
@@ -102,10 +102,10 @@
                     : StyleSetTypes.green;
             },
 
-            greenV2StyleSetButtonValue() {
+            green2025StyleSetButtonValue() {
                 return this.centered
-                    ? StyleSetTypes.greenV2Centered
-                    : StyleSetTypes.greenV2;
+                    ? StyleSetTypes.green2025Centered
+                    : StyleSetTypes.green2025;
             },
 
             isGreenStyleSet() {
@@ -113,9 +113,9 @@
                     || this.styleSet === StyleSetTypes.greenCentered
             },
 
-            isGreenV2StyleSet() {
-                return this.styleSet === StyleSetTypes.greenV2
-                    || this.styleSet === StyleSetTypes.greenV2Centered
+            isGreen2025StyleSet() {
+                return this.styleSet === StyleSetTypes.green2025
+                    || this.styleSet === StyleSetTypes.green2025Centered
             }
         },
 
@@ -128,7 +128,7 @@
                         return [StyleSetTypes.young]
 
                     default:
-                      return [StyleSetTypes.green, StyleSetTypes.greenV2]
+                      return [StyleSetTypes.green, StyleSetTypes.green2025]
                 }
             },
 
@@ -139,11 +139,11 @@
                     this.styleSet = StyleSetTypes.young;
                 } else if (ImageSizeIds.fbCoverGreen === this.selectedImageSize.id) {
                     this.styleSet = StyleSetTypes.greenCentered;
-                } else if (StyleSetTypes.greenV2 === style || StyleSetTypes.greenV2Centered === style) {
+                } else if (StyleSetTypes.green2025 === style || StyleSetTypes.green2025Centered === style) {
                     if(this.centered) {
-                        this.styleSet = StyleSetTypes.greenV2Centered;
+                        this.styleSet = StyleSetTypes.green2025Centered;
                     } else {
-                        this.styleSet = StyleSetTypes.greenV2;
+                        this.styleSet = StyleSetTypes.green2025;
                     }
                 }
                 else {

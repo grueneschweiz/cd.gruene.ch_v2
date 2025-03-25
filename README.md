@@ -108,6 +108,10 @@ See the Github Action [`.github/workflows/l10n.yml`](.github/workflows/l10n.yml)
   branch on any push to `dev` and on every pull request on `dev` or `master`.
   To get the new translations merge `l10n_crowdin` in your branch.
 
+#### VueJS
+The easiest way to debug Vue 2 is to just write `debugger` in the code when needed:
+https://v2.vuejs.org/v2/cookbook/debugging-in-vscode.html?redirect=true#Simple-Debugger-Statement
+
 ### Login
 See the single sign-on docs [docs/sso.md](docs/sso.md).
 

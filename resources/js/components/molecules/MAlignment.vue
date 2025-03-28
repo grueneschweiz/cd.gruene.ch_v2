@@ -42,8 +42,8 @@
                         ];
                     } else {
                         return [
-                            {value: Alignments.right, text: this.$t('images.create.barsLeft')},
-                            {value: Alignments.left, text: this.$t('images.create.barsRight')},
+                            {value: Alignments.left, text: this.$t('images.create.barsLeft')},
+                            {value: Alignments.right, text: this.$t('images.create.barsRight')},
                         ];
                     }
                 } else {

@@ -151,8 +151,8 @@
         "create": {
             "title": "Bild erstellen",
             "styleSet": "Stil",
-            "styleSetGreen": "Ursprünglich",
-            "styleSetGreen2025": "Aktuell",
+            "styleSetGreen": "Klassisch",
+            "styleSetGreen2025": "Alternativ",
             "styleSetGreen2025Centered": "zentriert",
             "styleSetGreen2025Left": "links",
             "styleSetGreen2025Right": "rechts",

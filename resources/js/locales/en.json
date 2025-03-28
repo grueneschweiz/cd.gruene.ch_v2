@@ -151,8 +151,8 @@
         "create": {
             "title": "Create Image",
             "styleSet": "Style",
-            "styleSetGreen": "Legacy",
-            "styleSetGreen2025": "Current",
+            "styleSetGreen": "Classic",
+            "styleSetGreen2025": "Alternative",
             "styleSetGreen2025Centered": "centered",
             "styleSetGreen2025Left": "left",
             "styleSetGreen2025Right": "right",

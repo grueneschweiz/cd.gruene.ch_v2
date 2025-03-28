@@ -1,9 +1,9 @@
 <template>
-    <div v-if="! logoType && usableStyleSets.length > 1" class="form-group">
+    <div v-if="hasMoreThanOneStyle" class="form-group">
         <label class="mb-0 d-block">{{$t('images.create.styleSet')}}</label>
         <div class="btn-group btn-group-toggle">
-            <label :class="{'active': isGreenStyleSet}"
-               class="btn btn-secondary btn-sm">
+            <label v-if="isGreenStyleAllowed" :class="{'active': isGreenStyleSet()}"
+            class="btn btn-secondary btn-sm">
             <input
                 v-model="styleSet"
                 :value="greenStyleSetButtonValue"
@@ -11,7 +11,7 @@
                 type="radio"
             >{{$t('images.create.styleSetGreen')}}
             </label>
-            <label :class="{'active': isGreen2025StyleSet}"
+            <label v-if="isGreen2025StyleAllowed" :class="{'active': isGreen2025StyleSet()}"
                class="btn btn-secondary btn-sm">
             <input
                 v-model="styleSet"
@@ -20,7 +20,7 @@
                 type="radio"
             >{{$t('images.create.styleSetGreen2025')}}
             </label>
-            <label :class="{'active': styleSet === styleSetTypes.young}"
+            <label v-if="isYoungStyleAllowed" :class="{'active': styleSet === styleSetTypes.young}"
                class="btn btn-secondary btn-sm">
             <input
                 v-model="styleSet"
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import {StyleSetTypes, LogoTypes, Alignments} from "../../service/canvas/Constants";
+import {StyleSetTypes, LogoTypes} from "../../service/canvas/Constants";
     import {ImageSizeIds, ImageSizes} from "../../service/canvas/ImageSizes";
     import {mapGetters} from "vuex";
 
@@ -54,7 +54,7 @@
               currentLogoId: 'canvas/getLogoId',
               selectedImageSize: 'canvas/getSelectedImageSize',
               logoType: 'canvas/getLogoType',
-              centered: true,
+              centered: 'canvas/getCentered',
             }),
 
             styleSet: {
@@ -64,36 +64,6 @@
                 set(value) {
                     this.$store.commit('canvas/setStyleSet', value);
                 },
-            },
-
-            usableLogoTypes() {
-                return this.usableLogos
-                    .map(logo => logo.type)
-                    .filter((type, index, array) => array.indexOf(type) === index)
-            },
-
-            usableStyleSets() {
-                const logoTypes = this.usableLogoTypes
-
-                if (logoTypes.length === 0) {
-                    return [
-                        StyleSetTypes.green,
-                        StyleSetTypes.green2025,
-                        StyleSetTypes.green2025Centered,
-                        StyleSetTypes.young
-                    ]
-                }
-
-                return logoTypes
-                  .flatMap(this.getStyleSetFromLogoType)
-            },
-
-            logoDefaultStyleSet() {
-                if (!this.logoType) {
-                    return null;
-                }
-
-                return this.getStyleSetFromLogoType(this.logoType)[0];
             },
 
             greenStyleSetButtonValue() {
@@ -108,18 +78,63 @@
                     : StyleSetTypes.green2025;
             },
 
-            isGreenStyleSet() {
-                return this.styleSet === StyleSetTypes.green
-                    || this.styleSet === StyleSetTypes.greenCentered
+            usableLogoTypes() {
+                const userLogos = this.usableLogos // what logos a user is allowed to use
+                    .map(logo => logo.type)
+                    .filter((type, index, array) => array.indexOf(type) === index)
+
+                // get only the selected logo type if it is set
+                const selectedLogoType = this.logoType;
+                if (selectedLogoType) {
+                    return userLogos.filter(type => type === selectedLogoType);
+                }
+
+                return userLogos;
             },
 
-            isGreen2025StyleSet() {
-                return this.styleSet === StyleSetTypes.green2025
-                    || this.styleSet === StyleSetTypes.green2025Centered
-            }
+            usableStyleSets() {
+                const logoTypes = this.usableLogoTypes
+
+                if (logoTypes.length === 0) {
+                    return [
+                        StyleSetTypes.green,
+                        StyleSetTypes.green2025,
+                        StyleSetTypes.green2025Centered,
+                        StyleSetTypes.young
+                    ]
+                }
+
+                return logoTypes.flatMap(type => this.getStyleSetFromLogoType(type))
+            },
+
+            isGreenStyleAllowed() {
+                return this.usableStyleSets.includes(StyleSetTypes.green)
+            },
+
+            isGreen2025StyleAllowed() {
+                return this.usableStyleSets.includes(StyleSetTypes.green2025)
+            },
+
+            isYoungStyleAllowed() {
+                return this.usableStyleSets.includes(StyleSetTypes.young)
+            },
+
+            hasMoreThanOneStyle() {
+                return this.usableStyleSets.length > 1
+            },
         },
 
         methods: {
+            isGreenStyleSet(styleSet = this.styleSet) {
+                return styleSet === StyleSetTypes.green
+                    || styleSet === StyleSetTypes.greenCentered;
+            },
+
+            isGreen2025StyleSet(styleSet = this.styleSet) {
+                return styleSet === StyleSetTypes.green2025
+                    || styleSet === StyleSetTypes.green2025Centered
+            },
+
             getStyleSetFromLogoType(logoType) {
                 switch (logoType) {
                     case LogoTypes["giovani-verdi"]:
@@ -133,22 +148,29 @@
             },
 
             applyCorrectStyleSet() {
-                const style = this.logoDefaultStyleSet || this.styleSet;
-
+                const style = this.styleSet;
                 if (StyleSetTypes.young === style) {
                     this.styleSet = StyleSetTypes.young;
-                } else if (ImageSizeIds.fbCoverGreen === this.selectedImageSize.id) {
-                    this.styleSet = StyleSetTypes.greenCentered;
                 } else if (StyleSetTypes.green2025 === style || StyleSetTypes.green2025Centered === style) {
                     if(this.centered) {
                         this.styleSet = StyleSetTypes.green2025Centered;
                     } else {
                         this.styleSet = StyleSetTypes.green2025;
                     }
-                }
-                else {
+                } else if (ImageSizeIds.fbCoverGreen === this.selectedImageSize.id) {
+                    this.styleSet = StyleSetTypes.greenCentered;
+                } else {
                     this.styleSet = StyleSetTypes.green;
                 }
+            },
+
+            getBaseStyleType(styleSet) {
+                if (this.isGreenStyleSet(styleSet)) {
+                    return 'green';
+                } else if (this.isGreen2025StyleSet(styleSet)) {
+                    return 'green2025';
+                }
+                return styleSet; // young or others
             },
         },
 
@@ -160,11 +182,22 @@
 
         watch: {
             logoType() {
-                this.applyCorrectStyleSet();
+                const logoStyle = this.getStyleSetFromLogoType(this.logoType);
+                if (!logoStyle.includes(this.styleSet)) {
+                    this.styleSet = logoStyle[0];
+                }
+                this.applyCorrectStyleSet(this.logoType);
             },
 
             selectedImageSize() {
                 this.applyCorrectStyleSet();
+            },
+
+           styleSet(newValue, oldValue) {
+                // Prevent loops between green2025 and green2025Centered
+                if (this.getBaseStyleType(newValue) !== this.getBaseStyleType(oldValue)) {
+                    this.applyCorrectStyleSet();
+                }
             },
         },
     }

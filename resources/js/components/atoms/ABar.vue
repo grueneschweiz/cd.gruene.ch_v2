@@ -132,7 +132,7 @@
                         return 'btn-outline-dark'
 
                     default:
-                        return 'btn-secondary' //TODO MSC
+                        return 'btn-secondary'
                 }
             },
 
@@ -145,7 +145,7 @@
                         return 'dark'
 
                     case BarSchemes.green2025:
-                        return 'green2025' //TODO MSC
+                        return 'green2025'
 
                     default:
                         return 'green'

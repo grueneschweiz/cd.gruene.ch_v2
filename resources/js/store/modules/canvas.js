@@ -78,6 +78,7 @@ const getters = {
     getLogoWidth: state => state.logoWidth,
     getLogoImage: state => state.logoImage,
     getLogoType: state => state.logoType,
+    getCentered: state => state.centered,
     getBackgroundType: state => state.backgroundType,
     getBackgroundImage: state => state.backgroundImage,
     getBackgroundImageId: state => state.backgroundImageId,

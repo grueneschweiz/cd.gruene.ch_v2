@@ -148,7 +148,7 @@ class ImageController extends Controller
             'background'  => [
                 'sometimes',
                 'required',
-                'in:'.Image::BG_CUSTOM.','.Image::BG_TRANSPARENT.','.Image::BG_GRADIENT,
+                'in:'.Image::BG_CUSTOM.','.Image::BG_TRANSPARENT.','.Image::BG_GRADIENT.','.Image::BG_ICONS,
                 new ImageBackgroundRule($image),
             ],
             // if mutable we would have to check the legal etc
@@ -215,7 +215,7 @@ class ImageController extends Controller
             ],
             'background'  => [
                 'required',
-                'in:'.Image::BG_CUSTOM.','.Image::BG_TRANSPARENT.','.Image::BG_GRADIENT,
+                'in:'.Image::BG_CUSTOM.','.Image::BG_TRANSPARENT.','.Image::BG_GRADIENT.','.Image::BG_ICONS,
                 new ImageBackgroundRule($image),
             ],
             'type'        => ['required', 'in:'.Image::TYPE_RAW.','.Image::TYPE_FINAL],

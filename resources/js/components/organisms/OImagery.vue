@@ -264,7 +264,7 @@ let requestedAnimationFrame;
 
                 this.setInitialEngineProps();
                 this.updateLogoWidth();
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             });
         },
 
@@ -274,12 +274,6 @@ let requestedAnimationFrame;
         },
 
         methods: {
-            logDebugError(error) {
-                if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-                    console.debug(error);
-                }
-            },
-
             setInitialEngineProps() {
                 const engine = this.engine;
 
@@ -338,12 +332,8 @@ let requestedAnimationFrame;
 
                 if (requestedAnimationFrame) {
                     window.cancelAnimationFrame(requestedAnimationFrame);
-                    // Only reject if it's not a repaint cancellation
-                    const promise = this.drawPromises.get(requestedAnimationFrame);
-                    if (promise) {
-                        promise.reject(new Error('Repaint cancelled'));
-                        this.drawPromises.delete(requestedAnimationFrame);
-                    }
+                    this.drawPromises.get(requestedAnimationFrame)?.reject(new Error('Repaint cancelled.'));
+                    this.drawPromises.delete(requestedAnimationFrame);
                 }
 
                 const drawFn = (resolve) => {
@@ -539,102 +529,102 @@ let requestedAnimationFrame;
         watch: {
             logoImage(value) {
                 this.engine.logoImage = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             logoType(value) {
                 this.engine.logoType = value;
                 this.updateLogoWidth();
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             styleSet(value) {
                 this.engine.styleSet = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             format(value) {
                 this.engine.format = value;
-                this.draw(true).catch(this.logDebugError);
+                this.draw(true).catch(console.debug);
             },
             visibleHeight(value) {
                 this.engine.bleed = this.bleed;
                 this.engine.visibleHeight = value;
                 this.updateLogoWidth();
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             visibleWidth(value) {
                 this.engine.bleed = this.bleed;
                 this.engine.visibleWidth = value;
                 this.updateLogoWidth();
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             canvasHeight(value) {
                 this.canvas.height = value;
-                this.draw(true).catch(this.logDebugError);
+                this.draw(true).catch(console.debug);
             },
             canvasWidth(value) {
                 this.canvas.width = value;
-                this.draw(true).catch(this.logDebugError);
+                this.draw(true).catch(console.debug);
             },
             backgroundType(value) {
                 this.engine.backgroundType = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             backgroundImage(value) {
                 this.engine.backgroundImage = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             backgroundZoom(value) {
                 this.engine.backgroundZoom = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             backgroundWatermarkText(value) {
                 this.engine.backgroundWatermarkText = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             bars(value) {
                 this.engine.bars = value;
-                this.draw(true).catch(this.logDebugError);
+                this.draw(true).catch(console.debug);
             },
             fontSizePercent(value) {
                 this.engine.fontSizePercent = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             hasTopShadow(value) {
                 this.engine.topShadow = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             hasBottomShadow(value) {
                 this.engine.bottomShadow = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             hasBorder(value) {
                 this.engine.hasBorder = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             copyrightText() {
                 this.setCopyrightText();
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             alignment(value) {
                 this.engine.alignment = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             fontsLoaded() {
-                this.draw(true).catch(this.logDebugError);
+                this.draw(true).catch(console.debug);
             },
             mousePos() {
                 this.engine.mousePos = this.mousePos;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             dragging() {
                 this.engine.dragging = this.dragging;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
             previewDims(value) {
                 this.engine.previewDims = value;
             },
             bleed(value) {
                 this.engine.bleed = value;
-                this.draw().catch(this.logDebugError);
+                this.draw().catch(console.debug);
             },
         }
     }

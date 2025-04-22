@@ -28,17 +28,43 @@
                 return this.$store.getters['canvas/getBars'].filter(bar => bar.text.length).length > 0
             },
 
+            getStyleSet() {
+                return this.$store.getters['canvas/getStyleSet']
+            },
+
             options() {
                 if (this.hasBars) {
-                    return [
-                        {value: Alignments.left, text: this.$t('images.create.barsLeft')},
-                        {value: Alignments.right, text: this.$t('images.create.barsRight')},
-                    ];
+                    if(this.getStyleSet === 'green2025' || this.getStyleSet === 'green2025Centered') {
+                        return [
+                            {value: Alignments.left, text: this.$t('images.create.barsLeft')},
+                            {value: Alignments.center, text: this.$t('images.create.barsCentered')},
+                            {value: Alignments.right, text: this.$t('images.create.barsRight')},
+                        ];
+                    } else {
+                        return [
+                            {value: Alignments.left, text: this.$t('images.create.barsLeft')},
+                            {value: Alignments.right, text: this.$t('images.create.barsRight')},
+                        ];
+                    }
                 } else {
                     return [
                         {value: Alignments.right, text: this.$t('images.create.logoLeft')},
                         {value: Alignments.left, text: this.$t('images.create.logoRight')},
                     ];
+                }
+            }
+        },
+        watch: {
+            alignment(newVal, oldVal) {
+                this.applyCorrectStyleSet(newVal);
+            }
+        },
+        methods: {
+            applyCorrectStyleSet(newAlignment) {
+                if (this.getStyleSet === 'green2025' && newAlignment === Alignments.center) {
+                    this.$store.commit('canvas/setStyleSet', 'green2025Centered');
+                } else if (this.getStyleSet === 'green2025Centered' && newAlignment !== Alignments.center) {
+                    this.$store.commit('canvas/setStyleSet', 'green2025');
                 }
             }
         }

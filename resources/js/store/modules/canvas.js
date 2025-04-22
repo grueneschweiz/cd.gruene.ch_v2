@@ -24,6 +24,7 @@ const state = {
     logoWidth: 0,
     logoImage: null,
     logoType: null,
+    centered: false,
     backgroundType: BackgroundTypes.gradient,
     backgroundImage: null,
     backgroundImageId: false,
@@ -78,6 +79,7 @@ const getters = {
     getLogoWidth: state => state.logoWidth,
     getLogoImage: state => state.logoImage,
     getLogoType: state => state.logoType,
+    getCentered: state => state.centered,
     getBackgroundType: state => state.backgroundType,
     getBackgroundImage: state => state.backgroundImage,
     getBackgroundImageId: state => state.backgroundImageId,
@@ -115,6 +117,7 @@ const mutations = {
     setLogoWidth: (state, width) => state.logoWidth = width,
     setLogoImage: (state, image) => state.logoImage = image,
     setLogoType: (state, type) => state.logoType = type,
+    setCentered: (state, value) => state.centered = value,
     setBackgroundType: (state, type) => state.backgroundType = type,
     setBackgroundImage: (state, image) => state.backgroundImage = image,
     setBackgroundImageId: (state, id) => state.backgroundImageId = id,
@@ -168,6 +171,9 @@ const actions = {
     },
     setLogoType({commit}, type) {
         commit('setLogoType', type)
+    },
+    setCentered({commit}, value) {
+        commit('setCentered', value)
     },
     setBackgroundType({commit}, type) {
         commit('setBackgroundType', type)

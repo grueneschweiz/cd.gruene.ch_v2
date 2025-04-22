@@ -1,24 +1,32 @@
 export const StyleSetTypes = {
     green: 'green',
+    green2025: 'green2025',
     greenCentered: 'greenCentered',
+    green2025Centered: 'green2025Centered',
     young: 'young'
 }
 
 export const MinFontSizeFactors = {
     [StyleSetTypes.green]: 0.0625, // the correct 175% would be 0.0925
+    [StyleSetTypes.green2025]: 0.0625, // the correct 175% would be 0.0925
     [StyleSetTypes.greenCentered]: 0.0625, // the correct 175% would be 0.0925
+    [StyleSetTypes.green2025Centered]: 0.0625, // the correct 175% would be 0.0925
     [StyleSetTypes.young]: 0.0575,
 }
 
 export const MaxFontSizeFactors = {
     [StyleSetTypes.green]: 0.99,
+    [StyleSetTypes.green2025]: 0.99,
     [StyleSetTypes.greenCentered]: 0.99,
+    [StyleSetTypes.green2025Centered]: 0.99,
     [StyleSetTypes.young]: 0.9,
 }
 
 export const MinToMaxFontSizeFactors = {
     [StyleSetTypes.green]: 4,
+    [StyleSetTypes.green2025]: 4,
     [StyleSetTypes.greenCentered]: 4,
+    [StyleSetTypes.green2025Centered]: 4,
     [StyleSetTypes.young]: 4,
 }
 
@@ -52,6 +60,7 @@ export const Alignments = {
 export const BackgroundTypes = {
     placeholder: 'placeholder',
     gradient: 'gradient',
+    icons: 'icons',
     transparent: 'transparent',
     image: 'custom'
 };
@@ -71,7 +80,7 @@ export const BorderRadiusFactor = 1;
 
 export const HugeImageJpegQuality = 0.9;
 export const RegularImageQuality = 1; // jpeg AND png
-export const HugeImageSurfaceLimit = 5000**2; // 5000px x 5000px
+export const HugeImageSurfaceLimit = 5000 ** 2; // 5000px x 5000px
 
 /**
  * How much can the background image be zoomed up?
@@ -95,6 +104,10 @@ export const BarSchemes = {
         background: '#84b414',
         text: '#ffffff',
     },
+    green2025: {
+        background: '#f8e6f0',
+        text: '#e10078',
+    },
     magenta: {
         background: '#e10078',
         text: '#ffffff',
@@ -113,6 +126,7 @@ export const CopyrightColors = {
 export const ColorSchemes = {
     white: 'white',
     green: 'green',
+    green2025: 'green2025',
     greengreen: 'green-green',
 };
 

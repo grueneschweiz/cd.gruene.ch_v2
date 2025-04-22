@@ -1,14 +1,20 @@
 import DraggableSubEngine from "./DraggableSubEngine";
-import {BarTypes, StyleSetTypes} from "../Constants";
+import {Alignments, BarTypes, StyleSetTypes} from "../Constants";
 import BarLayerYoung from "../layers/bar/BarLayerYoung";
 import BarLayerGreenCenter from "../layers/bar/BarLayerGreenCenter";
 import BarLayerGreen from "../layers/bar/BarLayerGreen";
+import BarLayerGreen2025 from "../layers/bar/BarLayerGreen2025";
+import BarLayerGreen2025Center from "../layers/bar/BarLayerGreen2025Center";
 import BarYoung from "../elements/bar/BarYoung";
 import BarGreenCentered from "../elements/bar/BarGreenCentered";
+import BarGreen2025Centered from "../elements/bar/BarGreen2025Centered";
 import BarGreen from "../elements/bar/BarGreen";
+import BarGreen2025 from "../elements/bar/BarGreen2025";
 import BarBlockYoung from "../blocks/bar/BarBlockYoung";
 import BarBlockGreenCenter from "../blocks/bar/BarBlockGreenCenter";
 import BarBlockGreen from "../blocks/bar/BarBlockGreen";
+import BarBlockGreen2025 from "../blocks/bar/BarBlockGreen2025";
+import BarBlockGreen2025Center from "../blocks/bar/BarBlockGreen2025Center";
 import FontSizeHelper from "../misc/FontSizeHelper";
 
 export default class BarEngine extends DraggableSubEngine {
@@ -163,6 +169,10 @@ export default class BarEngine extends DraggableSubEngine {
                 return new BarYoung();
             case StyleSetTypes.greenCentered:
                 return new BarGreenCentered();
+            case StyleSetTypes.green2025:
+                return new BarGreen2025();
+            case StyleSetTypes.green2025Centered:
+                return new BarGreen2025Centered();
             default:
                 return new BarGreen();
         }
@@ -176,6 +186,10 @@ export default class BarEngine extends DraggableSubEngine {
                 return new BarBlockYoung(barCanvasses);
             case StyleSetTypes.greenCentered:
                 return new BarBlockGreenCenter(barCanvasses);
+            case StyleSetTypes.green2025:
+                return new BarBlockGreen2025(barCanvasses);
+            case StyleSetTypes.green2025Centered:
+                return new BarBlockGreen2025Center(barCanvasses);
             default:
                 return new BarBlockGreen(barCanvasses);
         }
@@ -187,6 +201,10 @@ export default class BarEngine extends DraggableSubEngine {
                 return new BarLayerYoung(this._canvas, this._context);
             case StyleSetTypes.greenCentered:
                 return new BarLayerGreenCenter(this._canvas, this._context);
+            case StyleSetTypes.green2025:
+                return new BarLayerGreen2025(this._canvas, this._context);
+            case StyleSetTypes.green2025Centered:
+                return new BarLayerGreen2025Center(this._canvas, this._context);
             default:
                 return new BarLayerGreen(this._canvas, this._context);
         }

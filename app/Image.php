@@ -70,6 +70,7 @@ class Image extends Model
     public const BG_GRADIENT = 'gradient';
     public const BG_TRANSPARENT = 'transparent';
     public const BG_CUSTOM = 'custom';
+    public const BG_ICONS = 'icons';
 
     /**
      * The attributes that should be hidden for arrays.

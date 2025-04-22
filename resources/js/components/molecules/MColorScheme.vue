@@ -1,5 +1,5 @@
 <template>
-    <div v-if="backgroundType !== backgroundTypes.gradient" class="form-group">
+    <div v-if="!isColorSchemeHidden" class="form-group">
         <AButtonGroup
             :options="options"
             :title="$t('images.create.colorScheme')"
@@ -38,11 +38,29 @@ import {mapGetters} from "vuex";
                 }
             },
 
+            isColorSchemeHidden() {
+                return this.backgroundType === BackgroundTypes.gradient
+                    || this.styleSet === StyleSetTypes.green2025
+                    || this.styleSet === StyleSetTypes.green2025Centered
+            },
+
             options() {
-                const options = [
-                  {value: ColorSchemes.white, text: this.$t('images.create.white')},
-                  {value: ColorSchemes.green, text: this.$t('images.create.green')},
-                ]
+                const options = [];
+
+                if (StyleSetTypes.green2025 === this.styleSet
+                    || StyleSetTypes.green2025Centered === this.styleSet) {
+
+                    options.push(
+                        {value: ColorSchemes.green2025, text: this.$t('images.create.green2025')}
+                    );
+
+                    return options
+                }
+
+                options.push(
+                    {value: ColorSchemes.white, text: this.$t('images.create.white')},
+                    {value: ColorSchemes.green, text: this.$t('images.create.green')}
+                );
 
                 if (StyleSetTypes.green === this.styleSet
                     || StyleSetTypes.greenCentered === this.styleSet) {
@@ -63,9 +81,13 @@ import {mapGetters} from "vuex";
                 }
             },
             backgroundType(value) {
-                this.scheme = BackgroundTypes.gradient === value
-                        ? ColorSchemes.white
-                        : ColorSchemes.green
+                if (BackgroundTypes.gradient === value) {
+                    this.scheme = ColorSchemes.white;
+                } else if (this.scheme === ColorSchemes.green) {
+                    this.scheme = ColorSchemes.green;
+                } else {
+                    this.scheme = ColorSchemes.green2025;
+                }
             },
         },
     }

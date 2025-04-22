@@ -183,6 +183,10 @@ import {
             },
 
             downloadLink() {
+                if (!this.finalImageSrc) {
+                    return null;
+                }
+
                 const url = new URL(this.finalImageSrc);
                 url.searchParams.append('format', this.downloadImageFileExtension);
                 url.searchParams.append('color_profile', this.colorEncoding);
@@ -334,6 +338,10 @@ import {
             },
 
             processImage() {
+                if (!this.finalImageSrc) {
+                    return Promise.reject(new Error('Image source not available yet'));
+                }
+
                 // trigger a download to process the image on the server
                 // it will cache processed image server sides and dramatically
                 // increase ux when clicking the download button.

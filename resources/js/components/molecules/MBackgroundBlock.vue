@@ -16,6 +16,19 @@
                         type="radio"
                     >{{$t('images.create.backgroundGreen')}}
                 </label>
+                <label v-if="iconsBackgroundAvailable"
+                       :class="{
+                            'active': backgroundType === backgroundTypes.icons,
+                            'disabled': loading,
+                       }"
+                       class="btn btn-secondary btn-sm">
+                    <input
+                        v-model="backgroundType"
+                        :value="backgroundTypes.icons"
+                        name="background"
+                        type="radio"
+                    >{{$t('images.create.backgroundIcons')}}
+                </label>
                 <label v-if="!hugeCanvas"
                        :class="{
                         'active': backgroundType === backgroundTypes.transparent,
@@ -231,6 +244,11 @@ import {mapGetters} from "vuex";
                     || this.styleSet === StyleSetTypes.greenCentered;
             },
 
+            iconsBackgroundAvailable() {
+                return this.styleSet === StyleSetTypes.green2025
+                    || this.styleSet === StyleSetTypes.green2025Centered;
+            },
+
             acceptedMimeTypes() {
                 return mimeTypesAllowed.join(',');
             },
@@ -336,6 +354,8 @@ import {mapGetters} from "vuex";
                 if (this.hugeCanvas && this.backgroundType === BackgroundTypes.transparent) {
                     if (this.styleSet === StyleSetTypes.young) {
                         this.backgroundType = BackgroundTypes.placeholder
+                    } else if(this.styleSet === StyleSetTypes.green2025) {
+                        this.backgroundType = BackgroundTypes.icons
                     } else {
                         this.backgroundType = BackgroundTypes.gradient;
                     }
@@ -371,12 +391,20 @@ import {mapGetters} from "vuex";
                 this.maybeDisableTransparentBackground();
             },
             styleSet(valueNew) {
-                if (StyleSetTypes.young === valueNew && BackgroundTypes.gradient === this.backgroundType) {
-                    this.backgroundType = BackgroundTypes.placeholder
-                }
-                if ((StyleSetTypes.green === valueNew || StyleSetTypes.greenCentered === valueNew )
-                    && BackgroundTypes.placeholder === this.backgroundType) {
-                    this.backgroundType = BackgroundTypes.gradient
+                const isYoungStyle = valueNew === StyleSetTypes.young;
+                const isGreenStyle = valueNew === StyleSetTypes.green || valueNew === StyleSetTypes.greenCentered;
+                const isGreen2025Style = valueNew === StyleSetTypes.green2025 || valueNew === StyleSetTypes.green2025Centered;
+
+                const isGradientOrIcons = this.backgroundType === BackgroundTypes.gradient || this.backgroundType === BackgroundTypes.icons;
+                const isPlaceholderOrIcons = this.backgroundType === BackgroundTypes.placeholder || this.backgroundType === BackgroundTypes.icons;
+                const isPlaceholderOrGradient = this.backgroundType === BackgroundTypes.placeholder || this.backgroundType === BackgroundTypes.gradient;
+
+                if (isYoungStyle && isGradientOrIcons) {
+                    this.backgroundType = BackgroundTypes.placeholder;
+                } else if (isGreenStyle && isPlaceholderOrIcons) {
+                    this.backgroundType = BackgroundTypes.gradient;
+                } else if (isGreen2025Style && isPlaceholderOrGradient) {
+                    this.backgroundType = BackgroundTypes.icons;
                 }
             },
             user() {

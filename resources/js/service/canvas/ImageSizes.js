@@ -61,7 +61,12 @@ export const ImageSizes = [
         height: 315,
         resolution: 300,
         labelKey: 'images.create.sizes.fbCover',
-        excludeStyleSets: [StyleSetTypes.green, StyleSetTypes.greenCentered],
+        excludeStyleSets: [
+            StyleSetTypes.green, 
+            StyleSetTypes.greenCentered, 
+            StyleSetTypes.green2025, 
+            StyleSetTypes.green2025Centered
+        ],
         media: Media.screen,
         rotatable: false,
     },

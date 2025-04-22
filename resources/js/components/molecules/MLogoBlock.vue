@@ -121,7 +121,9 @@
                 if (StyleSetTypes.young === this.styleSet) {
                     return 'white';
                 }
-
+                if (StyleSetTypes.green2025 === this.styleSet || StyleSetTypes.green2025Centered === this.styleSet) {
+                    return 'white';
+                }
                 return ColorSchemes.white === this.colorSchema ? 'white' : 'green';
             },
 

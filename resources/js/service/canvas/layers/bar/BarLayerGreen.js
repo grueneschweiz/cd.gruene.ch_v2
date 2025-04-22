@@ -27,6 +27,7 @@ const textPaddingFactor = 2;
 export default class BarLayerGreen extends BarLayer {
     constructor(canvas, context) {
         super(canvas, context);
+        this._rotationAngle = RotationAngle
     }
 
     _getTopLimit() {
@@ -54,7 +55,7 @@ export default class BarLayerGreen extends BarLayer {
         // horizontal and vertical respectively (unrotated). reset the origin
         // and rotation afterwards.
         this._context.translate(this._getBlockXpos(), this._getBlockYpos());
-        this._context.rotate(RotationAngle);
+        this._context.rotate(this._rotationAngle);
         this._context.drawImage(this._block, 0, 0);
         this._context.setTransform(1, 0, 0, 1, 0, 0);
     }
@@ -97,7 +98,7 @@ export default class BarLayerGreen extends BarLayer {
     }
 
     _getRotatedFullWidth() {
-        return this._getBlockWidth() + Math.sin(-RotationAngle) * this._getBlockHeight();
+        return this._getBlockWidth() + Math.sin(-this._rotationAngle) * this._getBlockHeight();
     }
 
     _getBlockOversize() {
@@ -107,16 +108,16 @@ export default class BarLayerGreen extends BarLayer {
             return this._getVisibleCanvasWidth() * BarSizeFactor - paddingX;
         }
 
-        const rotationCorr = Math.sin(RotationAngle) * this._getBlockHeight();
+        const rotationCorr = Math.sin(this._rotationAngle) * this._getBlockHeight();
         return this._getVisibleCanvasWidth() * BarSizeFactor + rotationCorr - paddingX;
     }
 
     _getVisibleHorizontalRotationTriangleHeight() {
-        return Math.sin(-RotationAngle) * this._getVisibleBlockWidth();
+        return Math.sin(-this._rotationAngle) * this._getVisibleBlockWidth();
     }
 
     _getFullHorizontalRotationTriangleHeight() {
-        return Math.sin(-RotationAngle) * this._getBlockWidth();
+        return Math.sin(-this._rotationAngle) * this._getBlockWidth();
     }
 
     _getVisibleBlockWidth() {

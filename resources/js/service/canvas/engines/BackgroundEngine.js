@@ -1,6 +1,7 @@
 import DraggableSubEngine from "./DraggableSubEngine";
 import BackgroundLayer from "../layers/BackgroundLayer";
 import BackgroundGradient from "../elements/background/BackgroundGradient";
+import BackgroundIcons from "../elements/background/BackgroundIcons";
 import BackgroundTransparent from "../elements/background/BackgroundTransparent";
 import BackgroundImage from "../elements/background/BackgroundImage";
 import BackgroundPlaceholder from "../elements/background/BackgroundPlaceholder";
@@ -78,6 +79,9 @@ export default class BackgroundEngine extends DraggableSubEngine {
 
             case BackgroundTypes.gradient:
                 return this._elementFactory(BackgroundGradient);
+
+            case BackgroundTypes.icons:
+                    return this._elementFactory(BackgroundIcons);
 
             case BackgroundTypes.transparent:
                 return this._elementFactory(BackgroundTransparent);

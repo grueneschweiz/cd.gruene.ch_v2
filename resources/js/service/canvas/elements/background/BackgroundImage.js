@@ -60,11 +60,15 @@ export default class BackgroundImage extends Background {
     }
 
     _setCanvasSize() {
-        const aspectRatioImage = this._image.width / this._image.height;
+        if (!this._image) {
+            this._canvas.width = this._containerWidth;
+            this._canvas.height = this._containerHeight;
+            return;
+        }
 
+        const aspectRatioImage = this._image.width / this._image.height;
         const minImageWidth = this._minImageWidth();
         const maxImageWidth = this._maxImageWidth();
-
         const width = minImageWidth + (maxImageWidth - minImageWidth) * this._zoom;
         const height = width / aspectRatioImage;
 
@@ -99,11 +103,11 @@ export default class BackgroundImage extends Background {
             // landscape
             const maxZoomedWidth = this._image.width * MaxImageZoomFactor;
             return Math.min(maxZoomedWidth, CanvasMaxSideLen);
+        } else {
+            // portrait
+            const maxZoomedHeight = this._image.height * MaxImageZoomFactor;
+            const maxHeight = Math.min(maxZoomedHeight, CanvasMaxSideLen);
+            return maxHeight * aspectRatio;
         }
-
-        // portrait
-        const maxZoomedHeight = this._image.height * MaxImageZoomFactor;
-        const maxHeight = Math.min(maxZoomedHeight, CanvasMaxSideLen);
-        return maxHeight * aspectRatio;
     }
 }

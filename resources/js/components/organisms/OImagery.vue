@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import {BackgroundTypes, HugeImageSurfaceLimit, StyleSetTypes, Alignments} from "../../service/canvas/Constants";
+import {BackgroundTypes, HugeImageSurfaceLimit, StyleSetTypes} from "../../service/canvas/Constants";
 import MBarBlock from "../molecules/MBarBlock";
 import MBackgroundBlock from "../molecules/MBackgroundBlock";
 import MBorderBlock from "../molecules/MBorderBlock";
@@ -122,7 +122,6 @@ let requestedAnimationFrame;
                 context: null,
                 backgroundTypes: BackgroundTypes,
                 styleSetTypes: StyleSetTypes,
-                alignments: Alignments,
 
                 viewHeight: document.documentElement.clientHeight,
                 viewWidth: document.documentElement.clientWidth,
@@ -539,18 +538,6 @@ let requestedAnimationFrame;
             },
             styleSet(value) {
                 this.engine.styleSet = value;
-
-                const currentAlignment = this.$store.getters['canvas/getAlignment'];
-
-                if ((value === StyleSetTypes.green || value === StyleSetTypes.green2025) &&
-                    currentAlignment !== Alignments.right) {
-                    this.$store.dispatch('canvas/setAlignment', Alignments.left);
-                } else if (value === StyleSetTypes.greenCentered ||
-                          value === StyleSetTypes.green2025Centered ||
-                          value === StyleSetTypes.young) {
-                    this.$store.dispatch('canvas/setAlignment', Alignments.center);
-                }
-
                 this.draw().catch(console.debug);
             },
             format(value) {

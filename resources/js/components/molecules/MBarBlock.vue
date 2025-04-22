@@ -50,7 +50,8 @@
         BarTypes,
         BackgroundTypes,
         ColorSchemes,
-        StyleSetTypes
+        StyleSetTypes,
+        Alignments
     } from "../../service/canvas/Constants";
     import ABar from "../atoms/ABar";
 
@@ -234,6 +235,27 @@
                         this.$store.commit('canvas/removeBar', {index: 1})
                     }
                 }
+            },
+
+            maybeAddHeadline() {
+                // Green and young layouts need at least 2 headline bars
+                if ((this.styleSet !== StyleSetTypes.green2025 &&
+                     this.styleSet !== StyleSetTypes.green2025Centered) &&
+                     this.bars.filter(bar => bar.type === BarTypes.headline).length === 1) {
+
+                    const secondHeadline = {
+                        type: BarTypes.headline,
+                        schema: BarSchemes.magenta,
+                        text: 'Headline',
+                        canvas: null,
+                        padding: 0,
+                    };
+
+                    this.$store.dispatch(
+                        'canvas/addBar',
+                        {index: 1, bar: secondHeadline}
+                    );
+                }
             }
         },
 
@@ -241,6 +263,19 @@
             styleSet() {
                 this.maybeRemoveSubline();
                 this.maybeRemoveHeadline();
+                this.maybeAddHeadline();
+
+                // Handle alignment based on style set
+                const currentAlignment = this.$store.getters['canvas/getAlignment'];
+
+                if ((this.styleSet === StyleSetTypes.green || this.styleSet === StyleSetTypes.green2025) &&
+                    currentAlignment !== Alignments.left) {
+                    this.$store.dispatch('canvas/setAlignment', Alignments.left);
+                } else if (this.styleSet === StyleSetTypes.greenCentered ||
+                          this.styleSet === StyleSetTypes.green2025Centered ||
+                          this.styleSet === StyleSetTypes.young) {
+                    this.$store.dispatch('canvas/setAlignment', Alignments.center);
+                }
 
                 this.$nextTick(() => {
                     this.updateBarSchemas();

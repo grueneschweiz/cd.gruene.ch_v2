@@ -57,12 +57,6 @@
         watch: {
             alignment(newVal, oldVal) {
                 this.applyCorrectStyleSet(newVal);
-            },
-
-            getStyleSet(newVal, oldVal) {
-                if((newVal === 'green' || newVal === 'greenCentered') && this.alignment === Alignments.center) {
-                    this.$store.commit('canvas/setAlignment', Alignments.left);
-                }
             }
         },
         methods: {

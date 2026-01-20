@@ -181,4 +181,25 @@ class GroupController extends Controller
 
         return response(null, 204);
     }
+
+    /**
+     * Find the Group model corresponding to a canton code
+     */
+    public static function findCantonGroup(string $cantonCode): ?Group
+    {
+        $cantonCode = strtoupper($cantonCode);
+        if ($cantonCode === 'CH') {
+            return null;
+        }
+
+        // Try to find group by name (extracted from Keycloak groups)
+        $group = Group::where('name', $cantonCode)->first();
+
+        // Special case for BastA! (Keycloak has "BastA" but group is "BastA!")
+        if (!$group && $cantonCode === 'BASTA') {
+            $group = Group::where('name', 'BastA!')->first();
+        }
+
+        return $group;
+    }
 }

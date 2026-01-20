@@ -12,6 +12,8 @@ use App\Rules\SuperAdminRule;
 use App\Rules\UserLogoRule;
 use App\Rules\UserManagedByRule;
 use App\Services\UserFederationService;
+use App\Services\CantonEmailService;
+use App\Http\Controllers\GroupController;
 use App\User;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
@@ -263,6 +265,10 @@ class UserController extends Controller
             return redirect()->route('registration-error');
         }
 
+        // Extract canton from groups and find corresponding group model for managed_by
+        $cantonCode = CantonEmailService::extractCantonFromGroups($keycloakUser->groups);
+        $cantonGroup = GroupController::findCantonGroup($cantonCode);
+
         $localUser = User::create([
             'first_name' => $keycloakUser->given_name,
             'last_name' => $keycloakUser->family_name,
@@ -271,7 +277,7 @@ class UserController extends Controller
             'password' => Hash::make(Str::random(32)),
             'enabled' => false,
             'added_by' => User::firstOrFail()->id,
-            'managed_by' => Group::firstOrFail()->id,
+            'managed_by' => $cantonGroup?->id ?? Group::firstOrFail()->id,
             'lang' => app()->getLocale()
         ]);
 

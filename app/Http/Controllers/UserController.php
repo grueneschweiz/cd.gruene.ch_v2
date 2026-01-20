@@ -275,7 +275,12 @@ class UserController extends Controller
             'lang' => app()->getLocale()
         ]);
 
-        Mail::to(config('app.admin_email'))
+        // Route email based on canton and use appropriate language
+        $recipientEmail = \App\Services\CantonEmailService::getCantonEmail($keycloakUser->groups);
+        $cantonLanguage = \App\Services\CantonEmailService::getCantonLanguage($keycloakUser->groups);
+
+        Mail::to($recipientEmail)
+            ->locale($cantonLanguage)
             ->send(new PendingApproval(
                 $localUser,
                 $keycloakUser->groups

@@ -410,6 +410,123 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Canton Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Email addresses and languages for Swiss cantons. This allows routing
+    | approval emails to the appropriate cantonal office and sends them
+    | in the correct language.
+    |
+    */
+
+    'cantons' => [
+        // German-speaking cantons
+        'AG' => [
+            'email' => env('CANTON_EMAIL_AG'),
+            'lang' => 'de',
+        ],
+        'AR' => [
+            'email' => env('CANTON_EMAIL_AR'),
+            'lang' => 'de',
+        ],
+        'BS' => [
+            'email' => env('CANTON_EMAIL_BS'),
+            'lang' => 'de',
+        ],
+        'BL' => [
+            'email' => env('CANTON_EMAIL_BL'),
+            'lang' => 'de',
+        ],
+        'BE' => [
+            'email' => env('CANTON_EMAIL_BE'),
+            'lang' => 'de',
+        ],
+        'GL' => [
+            'email' => env('CANTON_EMAIL_GL'),
+            'lang' => 'de',
+        ],
+        'GR' => [
+            'email' => env('CANTON_EMAIL_GR'),
+            'lang' => 'de',
+        ],
+        'LU' => [
+            'email' => env('CANTON_EMAIL_LU'),
+            'lang' => 'de',
+        ],
+        'NW' => [
+            'email' => env('CANTON_EMAIL_NW'),
+            'lang' => 'de',
+        ],
+        'OW' => [
+            'email' => env('CANTON_EMAIL_OW'),
+            'lang' => 'de',
+        ],
+        'VS' => [
+            'email' => env('CANTON_EMAIL_VS'),
+            'lang' => 'de',
+        ],
+        'SH' => [
+            'email' => env('CANTON_EMAIL_SH'),
+            'lang' => 'de',
+        ],
+        'SZ' => [
+            'email' => env('CANTON_EMAIL_SZ'),
+            'lang' => 'de',
+        ],
+        'SO' => [
+            'email' => env('CANTON_EMAIL_SO'),
+            'lang' => 'de',
+        ],
+        'SG' => [
+            'email' => env('CANTON_EMAIL_SG'),
+            'lang' => 'de',
+        ],
+        'TG' => [
+            'email' => env('CANTON_EMAIL_TG'),
+            'lang' => 'de',
+        ],
+        'UR' => [
+            'email' => env('CANTON_EMAIL_UR'),
+            'lang' => 'de',
+        ],
+        'TI' => [
+            'email' => env('CANTON_EMAIL_TI'),
+            'lang' => 'de',
+        ],
+        'ZG' => [
+            'email' => env('CANTON_EMAIL_ZG'),
+            'lang' => 'de',
+        ],
+        'ZH' => [
+            'email' => env('CANTON_EMAIL_ZH'),
+            'lang' => 'de',
+        ],
+
+        // French-speaking cantons
+        'FR' => [
+            'email' => env('CANTON_EMAIL_FR'),
+            'lang' => 'fr',
+        ],
+        'VD' => [
+            'email' => env('CANTON_EMAIL_VD'),
+            'lang' => 'fr',
+        ],
+        'NE' => [
+            'email' => env('CANTON_EMAIL_NE'),
+            'lang' => 'fr',
+        ],
+        'GE' => [
+            'email' => env('CANTON_EMAIL_GE'),
+            'lang' => 'fr',
+        ],
+        'JU' => [
+            'email' => env('CANTON_EMAIL_JU'),
+            'lang' => 'fr',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Crowdin username
     |--------------------------------------------------------------------------
     |

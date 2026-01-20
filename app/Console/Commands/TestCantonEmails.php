@@ -10,7 +10,7 @@ class TestCantonEmails extends Command
     protected $signature = 'test:canton-emails';
     protected $description = 'Test canton email routing functionality';
 
-    public function handle()
+    public function handle(): int
     {
         $this->info('Testing Canton Email Service...');
         $this->line(str_repeat('-', 50));

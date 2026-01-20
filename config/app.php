@@ -433,6 +433,10 @@ return [
             'email' => env('CANTON_EMAIL_BS'),
             'lang' => 'de',
         ],
+        'BastA' => [
+            'email' => env('CANTON_EMAIL_BASTA'),
+            'lang' => 'de',
+        ],
         'BL' => [
             'email' => env('CANTON_EMAIL_BL'),
             'lang' => 'de',

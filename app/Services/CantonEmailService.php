@@ -37,7 +37,7 @@ class CantonEmailService
         return $cantonConfig[$canton]['lang'] ?? 'de';
     }
     
-    private static function extractCantonFromGroups(array $groups): string
+    public static function extractCantonFromGroups(array $groups): string
     {
         if (empty($groups)) {
             return 'CH';

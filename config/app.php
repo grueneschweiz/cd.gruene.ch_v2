@@ -465,10 +465,6 @@ return [
             'email' => env('CANTON_EMAIL_OW'),
             'lang' => 'de',
         ],
-        'VS' => [
-            'email' => env('CANTON_EMAIL_VS'),
-            'lang' => 'de',
-        ],
         'SH' => [
             'email' => env('CANTON_EMAIL_SH'),
             'lang' => 'de',
@@ -525,6 +521,10 @@ return [
         ],
         'JU' => [
             'email' => env('CANTON_EMAIL_JU'),
+            'lang' => 'fr',
+        ],
+        'VS' => [
+            'email' => env('CANTON_EMAIL_VS'),
             'lang' => 'fr',
         ],
     ],

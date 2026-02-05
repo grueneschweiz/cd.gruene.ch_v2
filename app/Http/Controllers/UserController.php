@@ -227,7 +227,13 @@ class UserController extends Controller
             return redirect()->route('home');
         }
 
-        return view('auth.approval');
+        // Get groups from session (stored during registration)
+        $groups = $request->session()->get('keycloak_groups', []);
+        
+        // Get cantonal office email for contact
+        $cantonEmail = \App\Services\CantonEmailService::getCantonEmail($groups);
+
+        return view('auth.approval', ['cantonEmail' => $cantonEmail]);
     }
 
     /**
@@ -265,6 +271,9 @@ class UserController extends Controller
             return redirect()->route('registration-error');
         }
 
+        // Store groups in session for later use (e.g., pending approval page)
+        $request->session()->put('keycloak_groups', $keycloakUser->groups);
+        
         // Extract canton from groups and find corresponding group model for managed_by
         $cantonCode = CantonEmailService::extractCantonFromGroups($keycloakUser->groups);
         $cantonGroup = GroupController::findCantonGroup($cantonCode);

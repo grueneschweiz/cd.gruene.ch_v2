@@ -9,7 +9,7 @@
                     {{ __('approval.confirmation') }}
                     <br><br>
                     {{ __('approval.contact') }}
-                    <a href="mailto:{{ config('app.admin_email') }}">{{ config('app.admin_email') }}</a>
+                    <a href="mailto:{{ $cantonEmail }}">{{ $cantonEmail }}</a>
                 </p>
             </div>
         </div>

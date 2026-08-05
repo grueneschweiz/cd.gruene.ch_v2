@@ -1,20 +1,3 @@
 includes:
-    - vendor/larastan/larastan/extension.neon
-
-parameters:
-
-    paths:
-        - app/
-
-    excludePaths:
-        - app/Logo/AbstractFlowerLogo.php # https://github.com/grueneschweiz/cd.gruene.ch_v2/issues/73
-
-    level: 6
-    reportUnmatchedIgnoredErrors: false
-    ignoreErrors:
-        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder#' # local Scope recognition is not good enough in larastan
-        # phpstan is not yet very good with laravels magic, so undefined properties happen
-        - '#Access to an undefined property App\\KeycloakUser#'
-        - '#Access to an undefined property Illuminate#'
-
-    checkMissingIterableValueType: false
+    - phpstan-config.neon
+    - phpstan-baseline.neon

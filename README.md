@@ -26,7 +26,7 @@ design.
 4. Execute `bash install.sh` and have a ☕️ while it installs.
 5. Update the `.env` with your keycloak settings.
 5. Visit [localhost:3000/](http://localhost:3000/) and login.
-6. Enable your account via [phpmyadmin}(http://localhost:8010).
+6. Enable your account via [phpmyadmin](http://localhost:8010).
 7. As the font used in the corporate design is proprietary, you'll need to get a 
    licenced copy of the Sanuk font (fat and bold). Store it as follows:
    ```

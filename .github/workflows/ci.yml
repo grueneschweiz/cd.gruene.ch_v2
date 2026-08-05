@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Tests triggered by a ${{ github.event_name }} event to the ${{ github.ref }} branch."
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Add proprietary files
         env:

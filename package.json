@@ -31,9 +31,7 @@
         "vue-search-select": "^2.9.3",
         "vue-template-compiler": "^2.7.16",
         "vue2-animate": "^2.1.2",
-        "vuex": "^3.1.1",
-        "webpack": "5.104.1",
-        "webpack-cli": "4.10.0"
+        "vuex": "^3.1.1"
     },
     "dependencies": {
         "blueimp-load-image": "^5.13.0",

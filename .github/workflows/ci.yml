@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Tests triggered by a ${{ github.event_name }} event to the ${{ github.ref }} branch."
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Add proprietary files
         env:
@@ -22,12 +22,12 @@ jobs:
         if: ${{ failure() }}
         run: cat storage/logs/laravel-*.log
 
-      - name: PHPStan Analysis | Level 5
-        run: |
-          docker exec imagery ./vendor/bin/phpstan analyse --memory-limit=2G --error-format=github --no-progress --level 5
-        continue-on-error: false
-
-      - name: PHPStan Analysis | Higher Level, see phpstan.neon
+      - name: PHPStan Analysis (fail on new errors)
         run: |
           docker exec imagery ./vendor/bin/phpstan analyse --memory-limit=2G --error-format=github --no-progress
+        continue-on-error: false
+
+      - name: PHPStan Analysis (annotate all errors)
+        run: |
+          docker exec imagery ./vendor/bin/phpstan analyse -c phpstan-config.neon --memory-limit=2G --error-format=github --no-progress
         continue-on-error: true

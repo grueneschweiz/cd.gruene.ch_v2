@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: crowdin action
-        uses: crowdin/github-action@1.5.3
+        uses: crowdin/github-action@v2
         with:
           # upload options
           upload_sources: true
@@ -27,6 +27,8 @@ jobs:
           # download options
           download_translations: true
           push_translations: true
+          # v2 added a git checkout of the current branch before pushing; skip it since PRs only fetch the merge ref (restores v1 behaviour)
+          skip_ref_checkout: true
           localization_branch_name: l10n_crowdin
           create_pull_request: false
 

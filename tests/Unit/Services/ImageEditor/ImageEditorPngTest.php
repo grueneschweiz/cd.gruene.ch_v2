@@ -100,12 +100,12 @@ class ImageEditorPngTest extends TestCase
         );
     }
 
-    public function generateBleedProvider(): array
+    public static function generateBleedProvider(): array
     {
         return [
-            ['null' => null],
-            ['noBleed' => 0],
-            ['withBleed' => 5],
+            'null'      => [null],
+            'noBleed'   => [0],
+            'withBleed' => [5],
         ];
     }
 }

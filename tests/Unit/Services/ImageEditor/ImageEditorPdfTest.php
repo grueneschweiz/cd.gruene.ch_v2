@@ -91,20 +91,20 @@ class ImageEditorPdfTest extends TestCase
         // acrobat pro with the preflight tool.
     }
 
-    public function bleedProvider(): array
+    public static function bleedProvider(): array
     {
         return [
-            ['null' => null],
-            ['noBleed' => 0],
-            ['withBleed' => 5],
+            'null'      => [null],
+            'noBleed'   => [0],
+            'withBleed' => [5],
         ];
     }
 
-    public function resolutionProvider(): array
+    public static function resolutionProvider(): array
     {
         return [
-            ['too low' => 10],
-            ['too high' => 1000],
+            'too low'  => [10],
+            'too high' => [1000],
         ];
     }
 }

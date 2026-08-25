@@ -1,0 +1,877 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Property App\\Console\\Kernel\:\:\$commands type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Console/Kernel.php
+
+		-
+			message: '#^Method App\\Group\:\:addedBy\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:getBelow\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:getPropertyFlat\(\) has parameter \$properties with generic class Illuminate\\Support\\Collection but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:getPropertyFlat\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:logos\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany does not specify its types\: TRelatedModel, TDeclaringModel, TPivotModel, TAccessor \(2\-4 required\)$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:logosBelow\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:roles\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:users\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Group\:\:usersBelow\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^PHPDoc tag @method for method App\\Group\:\:newModelQuery\(\) return type contains generic type Kalnoy\\Nestedset\\QueryBuilder\<App\\Group\> but class Kalnoy\\Nestedset\\QueryBuilder is not generic\.$#'
+			identifier: generics.notGeneric
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^PHPDoc tag @method for method App\\Group\:\:newQuery\(\) return type contains generic type Kalnoy\\Nestedset\\QueryBuilder\<App\\Group\> but class Kalnoy\\Nestedset\\QueryBuilder is not generic\.$#'
+			identifier: generics.notGeneric
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^PHPDoc tag @method for method App\\Group\:\:query\(\) return type contains generic type Kalnoy\\Nestedset\\QueryBuilder\<App\\Group\> but class Kalnoy\\Nestedset\\QueryBuilder is not generic\.$#'
+			identifier: generics.notGeneric
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Group\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Group.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\CrowdinController\:\:showCredentials\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/CrowdinController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\FeedbackController\:\:showRecipients\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/FeedbackController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\FontController\:\:show\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/FontController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\GroupController\:\:index\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/GroupController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\GroupController\:\:users\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/GroupController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\ImageController\:\:indexFinal\(\) return type with generic class Illuminate\\Pagination\\LengthAwarePaginator does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/ImageController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\ImageController\:\:searchFinal\(\) return type with generic class Illuminate\\Pagination\\LengthAwarePaginator does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/ImageController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\LogoController\:\:indexManageable\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/LogoController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\LogoController\:\:indexUsable\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/LogoController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\LogoController\:\:syncGroups\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/LogoController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Upload\\ChunkUploadStrategy\:\:saveChunk\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Upload/ChunkUploadStrategy.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Upload\\ChunkUploadStrategy\:\:setValidatedData\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Upload/ChunkUploadStrategy.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Upload\\UploadStrategy\:\:__construct\(\) has parameter \$allowedFileExt with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/Upload/UploadStrategy.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Upload\\UploadStrategy\:\:validateFile\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Upload/UploadStrategy.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\Upload\\UploadStrategy\:\:validationErrorAbort\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/Upload/UploadStrategy.php
+
+		-
+			message: '#^Property App\\Http\\Controllers\\Upload\\UploadStrategy\:\:\$allowedFileExt type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/Upload/UploadStrategy.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:accountError\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:index\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:registrationError\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Method App\\Http\\Controllers\\UserController\:\:stats\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>id" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Controllers/UserController.php
+
+		-
+			message: '#^Property App\\Http\\Middleware\\ChooseGuard\:\:\$SESSION_KEY has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Http/Middleware/ChooseGuard.php
+
+		-
+			message: '#^Property App\\Http\\Middleware\\ChooseGuard\:\:\$ssoCallbackPath has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Http/Middleware/ChooseGuard.php
+
+		-
+			message: '#^Method App\\Http\\Middleware\\Localization\:\:detectBrowserLang\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Middleware/Localization.php
+
+		-
+			message: '#^Method App\\Http\\Middleware\\Localization\:\:getUserLang\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Middleware/Localization.php
+
+		-
+			message: '#^Method App\\Http\\Middleware\\Localization\:\:isAcceptedLang\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Http/Middleware/Localization.php
+
+		-
+			message: '#^Method App\\Http\\Middleware\\Localization\:\:isAcceptedLang\(\) has parameter \$lang with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Http/Middleware/Localization.php
+
+		-
+			message: '#^Method App\\Http\\Resources\\UserResource\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Http/Resources/UserResource.php
+
+		-
+			message: '#^Method App\\Image\:\:getFileTypeAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:getSrcAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:getThumbSrcAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:isCompleted\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:isFinal\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:isShareable\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:legal\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:logo\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:original\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeCompleted\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeCompleted\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeFinal\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeFinal\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeRaw\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeRaw\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeShareable\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:scopeShareable\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\Image\:\:user\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Image\:\:\$appends is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$appends\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Image\:\:\$hidden is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$hidden\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^PHPDoc type array\<string\>\|bool of property App\\Image\:\:\$guarded is not covariant with PHPDoc type array\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$guarded\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Image.php
+
+		-
+			message: '#^Method App\\KeycloakUser\:\:toArray\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/KeycloakUser.php
+
+		-
+			message: '#^Property App\\KeycloakUser\:\:\$fillable type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/KeycloakUser.php
+
+		-
+			message: '#^Method App\\Legal\:\:image\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Legal.php
+
+		-
+			message: '#^PHPDoc type array\<string\>\|bool of property App\\Legal\:\:\$guarded is not covariant with PHPDoc type array\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$guarded\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Legal.php
+
+		-
+			message: '#^Method App\\Logo\:\:addedBy\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\:\:getDownloadAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\:\:getGroupsAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\:\:getSrcGreenAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\:\:getSrcWhiteAttribute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\:\:groups\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\:\:images\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Logo\:\:\$appends is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$appends\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^PHPDoc type array\<string\>\|bool of property App\\Logo\:\:\$guarded is not covariant with PHPDoc type array\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$guarded\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Property ''groups'' does not exist in model\.$#'
+			identifier: rules.modelAppends
+			count: 1
+			path: app/Logo.php
+
+		-
+			message: '#^Method App\\Logo\\Logo\:\:serveCached\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo/Logo.php
+
+		-
+			message: '#^Method App\\Logo\\Logo\:\:validateColorScheme\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Logo/Logo.php
+
+		-
+			message: '#^Method App\\Logo\\LogoFactory\:\:get\(\) has parameter \$args with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Logo/LogoFactory.php
+
+		-
+			message: '#^Property App\\Mail\\AccountCreated\:\:\$manager has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Mail/AccountCreated.php
+
+		-
+			message: '#^Method App\\Mail\\PendingApproval\:\:__construct\(\) has parameter \$groups with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Mail/PendingApproval.php
+
+		-
+			message: '#^Property App\\Mail\\PendingApproval\:\:\$groups type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Mail/PendingApproval.php
+
+		-
+			message: '#^Method App\\Observers\\ImageObserver\:\:extendKeywords\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Observers/ImageObserver.php
+
+		-
+			message: '#^Method App\\Observers\\ImageObserver\:\:setImageDims\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Observers/ImageObserver.php
+
+		-
+			message: '#^Method App\\Observers\\UserObserver\:\:handleActivation\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Observers/UserObserver.php
+
+		-
+			message: '#^Method App\\Observers\\UserObserver\:\:setActivationToken\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Observers/UserObserver.php
+
+		-
+			message: '#^PHPDoc tag @return has invalid value \(string\|null;\)\: Unexpected token ";", expected TOKEN_HORIZONTAL_WS at offset 256 on line 8$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: app/Observers/UserObserver.php
+
+		-
+			message: '#^Method App\\Policies\\ImagePolicy\:\:before\(\) has parameter \$ability with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Policies/ImagePolicy.php
+
+		-
+			message: '#^Method App\\Policies\\RolePolicy\:\:before\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Policies/RolePolicy.php
+
+		-
+			message: '#^Method App\\Policies\\RolePolicy\:\:before\(\) has parameter \$ability with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Policies/RolePolicy.php
+
+		-
+			message: '#^Method App\\Policies\\RolePolicy\:\:before\(\) has parameter \$user with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Policies/RolePolicy.php
+
+		-
+			message: '#^Method App\\Policies\\UserPolicy\:\:before\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: '#^Method App\\Policies\\UserPolicy\:\:before\(\) has parameter \$ability with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: '#^Method App\\Policies\\UserPolicy\:\:before\(\) has parameter \$user with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Policies/UserPolicy.php
+
+		-
+			message: '#^Property App\\Providers\\UserFederationServiceProvider\:\:\$bindings type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Providers/UserFederationServiceProvider.php
+
+		-
+			message: '#^Method App\\Providers\\ViewServiceProvider\:\:getAppLocale\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Providers/ViewServiceProvider.php
+
+		-
+			message: '#^Method App\\Role\:\:addedBy\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^Method App\\Role\:\:group\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^Method App\\Role\:\:scopeAdmin\(\) has parameter \$query with generic class Illuminate\\Database\\Eloquent\\Builder but does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^Method App\\Role\:\:scopeAdmin\(\) return type with generic class Illuminate\\Database\\Eloquent\\Builder does not specify its types\: TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^Method App\\Role\:\:user\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^Method App\\Role\:\:usersBelow\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\Role\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/Role.php
+
+		-
+			message: '#^Call to an undefined static method Illuminate\\Support\\Facades\\Auth\:\:User\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Rules/CanManageGroupRule.php
+
+		-
+			message: '#^Method App\\Rules\\FileExtensionRule\:\:__construct\(\) has parameter \$allowedExtensions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Rules/FileExtensionRule.php
+
+		-
+			message: '#^Property App\\Rules\\FileExtensionRule\:\:\$whitelist has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Rules/FileExtensionRule.php
+
+		-
+			message: '#^Method App\\Services\\CantonEmailService\:\:extractCantonFromGroups\(\) has parameter \$groups with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/CantonEmailService.php
+
+		-
+			message: '#^Method App\\Services\\CantonEmailService\:\:getCantonEmail\(\) has parameter \$groups with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/CantonEmailService.php
+
+		-
+			message: '#^Method App\\Services\\CantonEmailService\:\:getCantonLanguage\(\) has parameter \$groups with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/CantonEmailService.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>name" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Services/ImageEditor/ImageEditorPdf.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\MyTCPDF\:\:Close\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Services/ImageEditor/MyTCPDF.php
+
+		-
+			message: '#^Property App\\Services\\ImageEditor\\MyTCPDF\:\:\$page_boxes has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/Services/ImageEditor/MyTCPDF.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\PDFFormat\:\:getBleedBox\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ImageEditor/PDFFormat.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\PDFFormat\:\:getCropMarkPosArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ImageEditor/PDFFormat.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\PDFFormat\:\:getFormatArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ImageEditor/PDFFormat.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\PDFFormat\:\:getImagePosArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ImageEditor/PDFFormat.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\PDFFormat\:\:getMediaBox\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ImageEditor/PDFFormat.php
+
+		-
+			message: '#^Method App\\Services\\ImageEditor\\PDFFormat\:\:getTrimBox\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ImageEditor/PDFFormat.php
+
+		-
+			message: '#^PHPDoc tag @var with type array\<SplFileInfo\> is not subtype of native type RecursiveIteratorIterator\<RecursiveDirectoryIterator\>\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: app/Services/LogoPackageService.php
+
+		-
+			message: '#^Property App\\Services\\LogoPackageService\:\:\$zipFiles type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/LogoPackageService.php
+
+		-
+			message: '#^Method App\\Services\\UserFederationService\:\:retrieveLocalUser\(\) has parameter \$authenticated with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Services/UserFederationService.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isGroupBelow\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\HasMany\:\:admin\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:activatableBy\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:addedBy\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:adminRoles\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:defaultLogo\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:manageableGroups\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:manageableLogos\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:manageableUsers\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:managedBy\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:roles\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:sendWelcomeNotification\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\User\:\:usableLogos\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^PHPDoc tag @property\-read for property App\\User\:\:\$notifications contains generic class Illuminate\\Notifications\\DatabaseNotificationCollection but does not specify its types\: TKey, TModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\User\:\:\$appends is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$appends\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\User\:\:\$fillable is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$fillable\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^PHPDoc type array\<int, string\> of property App\\User\:\:\$hidden is not covariant with PHPDoc type list\<string\> of overridden property Illuminate\\Database\\Eloquent\\Model\:\:\$hidden\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Property ''is_admin'' does not exist in model\.$#'
+			identifier: rules.modelAppends
+			count: 1
+			path: app/User.php
+
+		-
+			message: '#^Method App\\UserRegistration\:\:__construct\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/UserRegistration.php
+
+		-
+			message: '#^Property App\\UserRegistration\:\:\$city has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/UserRegistration.php
+
+		-
+			message: '#^Property App\\UserRegistration\:\:\$comment has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/UserRegistration.php
+
+		-
+			message: '#^Property App\\UserRegistration\:\:\$email has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/UserRegistration.php
+
+		-
+			message: '#^Property App\\UserRegistration\:\:\$firstName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/UserRegistration.php
+
+		-
+			message: '#^Property App\\UserRegistration\:\:\$lastName has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: app/UserRegistration.php

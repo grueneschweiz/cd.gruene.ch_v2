@@ -26,7 +26,7 @@ design.
 4. Execute `bash install.sh` and have a ☕️ while it installs.
 5. Update the `.env` with your keycloak settings.
 5. Visit [localhost:3000/](http://localhost:3000/) and login.
-6. Enable your account via [phpmyadmin}(http://localhost:8010).
+6. Enable your account via [phpmyadmin](http://localhost:8010).
 7. As the font used in the corporate design is proprietary, you'll need to get a 
    licenced copy of the Sanuk font (fat and bold). Store it as follows:
    ```
@@ -75,7 +75,11 @@ All tests are based on PHPUnit. It may be used as follows:
 
 #### phpstan
 The static analysis tool phpstan (with larastan) is used to check the code. It may be used as follows:
-`docker exec -it  imagery bash -c "vendor/bin/phpstan analyze --memory-limit=2G"`
+- With baseline (mirrors CI): `docker exec -it imagery vendor/bin/phpstan analyse --memory-limit=2G`
+- Without baseline (see all errors): `docker exec -it imagery vendor/bin/phpstan analyse -c phpstan-config.neon --memory-limit=2G`
+
+To regenerate the baseline after intentionally fixing or accepting errors:
+`docker exec -it imagery vendor/bin/phpstan analyse -c phpstan-config.neon --generate-baseline phpstan-baseline.neon --memory-limit=2G`
 
 #### MySQL
 Use the handy [phpMyAdmin](http://localhost:8010) or access the mysql CLI using

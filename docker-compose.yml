@@ -42,6 +42,7 @@ services:
     user: node
     environment:
       - NODE_ENV=development
+      - NODE_OPTIONS=--max-old-space-size=5120
     volumes:
       - ./:/home/node/app:cached
     command: yarn watch

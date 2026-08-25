@@ -20,7 +20,7 @@ jobs:
 
       - name: "Report: Some test(s) failed"
         if: ${{ failure() }}
-        run: cat storage/logs/laravel-*.log
+        run: cat storage/logs/laravel*.log
 
       - name: PHPStan Analysis (fail on new errors)
         run: |

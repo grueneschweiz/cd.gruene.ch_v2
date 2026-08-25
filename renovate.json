@@ -3,6 +3,10 @@
   "extends": [
     "config:recommended"
   ],
+  "schedule": [
+    "on Wednesday"
+  ],
+  "updateNotScheduled": false,
   "separateMajorMinor": true,
   "separateMultipleMajor": true,
   "packageRules": [
@@ -15,9 +19,25 @@
       "automergeType": "pr"
     },
     {
+      "description": "Keep php and selected webpack packages out of grouped updates",
+      "matchPackageNames": [
+        "php",
+        "webpack",
+        "webpack-cli",
+        "laravel-mix/webpackbar"
+      ],
+      "groupName": null
+    },
+    {
       "description": "Bundle all minor updates into one PR",
       "matchUpdateTypes": [
         "minor"
+      ],
+      "excludePackageNames": [
+        "php",
+        "webpack",
+        "webpack-cli",
+        "laravel-mix/webpackbar"
       ],
       "groupName": "all minor dependencies",
       "groupSlug": "all-minor-dependencies"

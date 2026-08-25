@@ -33,14 +33,14 @@
       "matchUpdateTypes": [
         "minor"
       ],
-      "excludePackageNames": [
-        "php",
-        "webpack",
-        "webpack-cli",
-        "laravel-mix/webpackbar"
-      ],
       "groupName": "all minor dependencies",
-      "groupSlug": "all-minor-dependencies"
+      "groupSlug": "all-minor-dependencies",
+      "matchPackageNames": [
+        "!php",
+        "!webpack",
+        "!webpack-cli",
+        "!laravel-mix/webpackbar"
+      ]
     },
     {
       "description": "Keep major updates as individual PRs",

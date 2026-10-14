@@ -19,7 +19,7 @@
         "browser-sync": "^2.29.3",
         "browser-sync-webpack-plugin": "^2.4.0",
         "cross-env": "^10.0.0",
-        "jquery": "^3.7.1",
+        "jquery": "^4.0.0",
         "laravel-mix": "^6.0.13",
         "laravel-mix-bundle-analyzer": "^1.0.5",
         "lodash": "^4.18.1",

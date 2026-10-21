@@ -349,7 +349,7 @@
 
                 this.saving = true;
                 this.$emit('saving');
-                this.imageUpload.then(this.save);
+                return this.imageUpload.then(this.save);
             },
 
             validate() {
@@ -359,11 +359,16 @@
             },
 
             save(imageId) {
-                Api().post(`images/${imageId}/legal`, this.payload)
+                if (!imageId) {
+                    this.saving = false;
+                    return;
+                }
+
+                return Api().post(`images/${imageId}/legal`, this.payload)
                     .then(() => this.$emit('completed'))
                     .catch(error => this.handleUnauthorized(error))
                     .catch(error => {
-                        this.snackErrorRetry(error, this.$t('images.create.legal.savingFailed'))
+                        return this.snackErrorRetry(error, this.$t('images.create.legal.savingFailed'))
                             .then(() => this.save(imageId));
                     })
                     .finally(() => this.saving = false);

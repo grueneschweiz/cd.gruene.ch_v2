@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "test": "node --experimental-vm-modules --test tests/js/*.test.mjs",
         "development": "mix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",

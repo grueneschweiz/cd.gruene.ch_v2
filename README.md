@@ -89,6 +89,7 @@ Use the handy [phpMyAdmin](http://localhost:8010) or access the mysql CLI using
 The node container is watching the js, css and scss files and building the assets.
 - Access the watching container using `docker exec -it imagery_node bash`.
 - Get the build output `docker attach imagery_node`.
+- Run the JavaScript regression tests using `docker compose run --rm --no-deps -T node npm test`.
 
 #### Composer
 The PHP Composer runs directly on the `imagery` container.

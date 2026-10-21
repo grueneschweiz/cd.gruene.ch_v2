@@ -80,12 +80,11 @@ class ChunkUploadStrategy extends UploadStrategy
                 'required',
                 'string',
                 function ($attribute, $value, $fail) {
-                    $current = $this->getCurrentTmpFileSize();
-                    $fileMax = $this->allowedFileSize;
-                    $chunkMax = config('app.uploads_max_chunk_size') * 1024 * 1024;
+                    $current = 0 === $this->part ? 0 : $this->getCurrentTmpFileSize();
+                    $fileMax = ceil($this->allowedFileSize * 4 / 3);
+                    $chunkMax = ceil(config('app.uploads_max_chunk_size') * 1024 * 1024 * 4 / 3);
 
-                    $max = min($fileMax - $current, $chunkMax);
-                    $base64max = ceil($max * 4 / 3);
+                    $base64max = min($fileMax - $current, $chunkMax);
 
                     $base64value = rtrim($this->extractData($value), '=');
 
@@ -97,7 +96,7 @@ class ChunkUploadStrategy extends UploadStrategy
         ]);
 
         if ($validator->fails()) {
-            $this->validationErrorAbort("base64value", 'Max file size exceeded.');
+            $this->validationErrorAbort(self::KEY_DATA, 'Max file size exceeded.');
         }
 
         $validated = $validator->validated();

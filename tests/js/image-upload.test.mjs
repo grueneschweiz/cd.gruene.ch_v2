@@ -3,17 +3,19 @@ import fs from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
 
-function exported(values) {
+function exported(values, context) {
     return new vm.SyntheticModule(Object.keys(values), function () {
         for (const [name, value] of Object.entries(values)) {
             this.setExport(name, value);
         }
-    });
+    }, {context});
 }
 
-async function loadComponents(api) {
+async function loadComponents(api, browser) {
+    const context = vm.createContext({console, window: browser, setTimeout});
+    const synthetic = values => exported(values, context);
     const modules = new Map();
-    const apiModule = exported({default: () => api});
+    const apiModule = synthetic({default: () => api});
 
     async function load(filename) {
         if (modules.has(filename)) {
@@ -25,7 +27,7 @@ async function loadComponents(api) {
             source = source.match(/<script>([\s\S]*?)<\/script>/)[1];
         }
 
-        const module = new vm.SourceTextModule(source, {identifier: filename});
+        const module = new vm.SourceTextModule(source, {identifier: filename, context});
         modules.set(filename, module);
         await module.link(specifier => {
             if (specifier.endsWith('/Api')) {
@@ -34,8 +36,11 @@ async function loadComponents(api) {
             if (specifier.endsWith('/ImageUpload')) {
                 return load('resources/js/service/ImageUpload.js');
             }
+            if (specifier.endsWith('/Snackbar')) {
+                return load('resources/js/service/Snackbar.js');
+            }
             if (specifier.endsWith('/Constants')) {
-                return exported({
+                return synthetic({
                     BackgroundTypes: {image: 'custom'},
                     Formats: {},
                     HugeImageJpegQuality: 0.8,
@@ -45,15 +50,15 @@ async function loadComponents(api) {
                 });
             }
             if (specifier === 'vuex') {
-                return exported({mapGetters: () => ({})});
+                return synthetic({mapGetters: () => ({})});
             }
             if (specifier === 'vuelidate/lib/validators') {
-                return exported(Object.fromEntries(
+                return synthetic(Object.fromEntries(
                     ['required', 'maxLength', 'url', 'requiredIf', 'requiredUnless']
                         .map(name => [name, () => true])
                 ));
             }
-            return exported({default: {}});
+            return synthetic({default: {}});
         });
         await module.evaluate();
         return module;
@@ -62,6 +67,7 @@ async function loadComponents(api) {
     return {
         dialog: (await load('resources/js/components/organisms/OImageDialog.vue')).namespace.default,
         form: (await load('resources/js/components/molecules/MLegalForm.vue')).namespace.default,
+        unauthorized: (await load('resources/js/mixins/UnauthorizedHandlerMixin.js')).namespace.default,
     };
 }
 
@@ -95,11 +101,20 @@ async function fixture({photo = true, failures = {}} = {}) {
             return error ? Promise.reject(error) : Promise.resolve({data: {}});
         },
     };
-    const definitions = await loadComponents(api);
+    const browser = {location: {href: ''}};
+    const definitions = await loadComponents(api, browser);
     const context = {
         $t: message => message,
         $emit: event => events.push(event),
-        handleUnauthorized(error) { throw error; },
+        handleUnauthorized: definitions.unauthorized.methods.handleUnauthorized,
+        $store: {
+            dispatch(action, snackbar) {
+                assert.equal(action, 'snackbar/push');
+                const retry = deferred();
+                notices.push({message: snackbar.message, retry});
+                return retry.promise;
+            },
+        },
         snackErrorRetry(error, message) {
             const retry = deferred();
             notices.push({error, message, retry});
@@ -140,7 +155,7 @@ async function fixture({photo = true, failures = {}} = {}) {
         form[name] = method.bind(form);
     }
     form.validate = () => true;
-    return {dialog, form, requests, notices, events};
+    return {dialog, form, requests, notices, events, browser};
 }
 
 test('photo saves use the uploaded original ID for legal information', async () => {
@@ -238,3 +253,49 @@ test('legal saving never posts a missing image ID', async () => {
     }
     assert.deepEqual(requests, []);
 });
+
+for (const status of [401, 419]) {
+    for (const stage of ['rawUpload', 'rawMeta', 'finalUpload', 'finalMeta', 'processing']) {
+        test(`${status} during ${stage} offers login without advancing the export`, async testContext => {
+            testContext.mock.method(console, 'error', () => {});
+            const photo = stage.startsWith('raw');
+            const {dialog, form, requests, notices, browser} = await fixture({photo, failures: {
+                [stage]: [{response: {status}}],
+            }});
+            let completed = false;
+            dialog.save().then(() => completed = true);
+            if (photo) {
+                form.submit();
+            }
+            await flush();
+            assert.equal(notices.length, 1);
+            assert.equal(notices[0].message, 'snackbar.unauthorized');
+            const requestCount = requests.length;
+            notices[0].retry.resolve();
+            await flush();
+            assert.equal(browser.location.href, '/');
+            assert.equal(completed, false);
+            assert.equal(dialog.downloadReady, false);
+            assert.equal(requests.length, requestCount);
+            assert.ok(!requests.some(request => request.endpoint.endsWith('/legal')));
+        });
+    }
+
+    test(`${status} during legal saving offers login without reporting completion`, async testContext => {
+        testContext.mock.method(console, 'error', () => {});
+        const {form, requests, notices, events, browser} = await fixture({failures: {
+            legal: [{response: {status}}],
+        }});
+        form.saving = true;
+        form.save(123);
+        await flush();
+        assert.equal(notices.length, 1);
+        assert.equal(notices[0].message, 'snackbar.unauthorized');
+        notices[0].retry.resolve();
+        await flush();
+        assert.equal(browser.location.href, '/');
+        assert.equal(form.saving, true);
+        assert.ok(!events.includes('completed'));
+        assert.equal(requests.length, 1);
+    });
+}

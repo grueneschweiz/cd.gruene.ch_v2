@@ -15,6 +15,9 @@ jobs:
       - name: Install everything
         run: bash install.sh
 
+      - name: Run JavaScript regressions
+        run: docker exec imagery_node npm test
+
       - name: Run PHPUnit
         run: docker exec imagery vendor/bin/phpunit
 

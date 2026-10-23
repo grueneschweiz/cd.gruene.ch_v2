@@ -4,7 +4,7 @@ export default {
     methods: {
 
         handleUnauthorized(error) {
-            if (error.response?.status === 401) {
+            if ([401, 419].includes(error.response?.status)) {
                 console.error(error);
 
                 const snackbar = new Snackbar.Snackbar(
@@ -14,7 +14,10 @@ export default {
                 );
 
                 return this.$store.dispatch('snackbar/push', snackbar)
-                    .then(() => window.location.href = '/' );
+                    .then(() => {
+                        window.location.href = '/';
+                        return new Promise(() => {});
+                    });
             }
 
             throw error;

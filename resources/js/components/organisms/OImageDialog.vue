@@ -258,9 +258,10 @@ import {
                     upload = this.uploadFinalImage();
                 }
 
-                upload.then(() => this.processImage())
+                return upload.then(() => this.processImage())
                     .then(() => this.setImageReuse())
-                    .then(() => this.downloadButtonShow());
+                    .then(() => this.downloadButtonShow())
+                    .catch(() => this.$emit('close'));
             },
 
             uploadRawImage() {
@@ -274,14 +275,15 @@ import {
 
                 return uploader.upload('files/images')
                     .then(() => this.uploadRawImageMeta())
+                    .catch(error => this.handleUnauthorized(error))
                     .catch(error => {
                         if (error.response?.data?.errors?.base64data?.[0] === 'Max file size exceeded.') {
                             this.snackErrorDismiss(error, this.$t('images.create.maxFileSizeExceededRaw'));
-                            return;
+                            throw error;
                         }
 
-                        this.snackErrorRetry(error, this.$t('images.create.uploadFailed'))
-                            .then(this.uploadRawImage);
+                        return this.snackErrorRetry(error, this.$t('images.create.uploadFailed'))
+                            .then(() => this.uploadRawImage());
                     });
             },
 
@@ -296,14 +298,15 @@ import {
 
                 return uploader.upload('files/images')
                     .then(() => this.uploadFinalImageMeta())
+                    .catch(error => this.handleUnauthorized(error))
                     .catch(error => {
                         if (error.response?.data?.errors?.base64data?.[0] === 'Max file size exceeded.') {
                             this.snackErrorDismiss(error, this.$t('images.create.maxFileSizeExceededFinal'));
-                            return;
+                            throw error;
                         }
 
-                        this.snackErrorRetry(error, this.$t('images.create.uploadFailed'))
-                            .then(this.uploadFinalImage);
+                        return this.snackErrorRetry(error, this.$t('images.create.uploadFailed'))
+                            .then(() => this.uploadFinalImage());
                     });
             },
 
@@ -351,7 +354,7 @@ import {
                     .then(() => this.imageProcessingStatus = 1)
                     .catch(error => this.handleUnauthorized(error))
                     .catch(error => {
-                        this.snackErrorRetry(error, this.$t('images.create.processingFailed'))
+                        return this.snackErrorRetry(error, this.$t('images.create.processingFailed'))
                             .then(() => this.processImage());
                     });
             },
@@ -381,8 +384,8 @@ import {
                     .then(() => this.uploadMetaStatus++)
                     .catch(error => this.handleUnauthorized(error))
                     .catch(error => {
-                        this.snackErrorRetry(error, this.$t('images.create.uploadFailed'))
-                            .then(() => this.uploadImageMeta(payload));
+                        return this.snackErrorRetry(error, this.$t('images.create.uploadFailed'))
+                            .then(() => this.uploadImageMeta(payload, successCallback));
                     });
             },
 

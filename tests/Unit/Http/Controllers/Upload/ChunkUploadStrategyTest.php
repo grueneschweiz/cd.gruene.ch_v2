@@ -96,8 +96,62 @@ class ChunkUploadStrategyTest extends TestCase
 
         $uploader->storeTmp($request1);
 
-        $this->expectException(\Illuminate\Http\Exceptions\HttpResponseException::class);
-        $uploader->storeTmp($request2);
+        try {
+            $uploader->storeTmp($request2);
+        } catch (\Illuminate\Http\Exceptions\HttpResponseException $exception) {
+            $response = $exception->getResponse();
+            $this->assertSame(422, $response->getStatusCode());
+            $this->assertSame(
+                ['Max file size exceeded.'],
+                json_decode($response->getContent(), true)['errors']['base64data']
+            );
+            return;
+        }
+
+        $this->fail('An oversized upload must be rejected.');
+    }
+
+    public function testStoreTmp__fileSizeAtLimit()
+    {
+        Config::set('app.uploads_max_file_size', 12 / (1024 * 1024));
+
+        $filename = 'at-limit.txt';
+        $data = base64_encode('123456789012');
+        $uploader = new ChunkUploadStrategy(['txt']);
+        $relFilePath = $this->getTmpFilePath($uploader, $filename);
+        Storage::delete($relFilePath);
+
+        $uploader->storeTmp(new \Illuminate\Http\Request([
+            'filename' => $filename,
+            'part' => 0,
+            'base64data' => 'data:application/octet-stream;base64,' . substr($data, 0, 8),
+        ]));
+        $uploader->storeTmp(new \Illuminate\Http\Request([
+            'filename' => $filename,
+            'part' => 8,
+            'base64data' => substr($data, 8),
+        ]));
+
+        $this->assertSame($data, Storage::get($relFilePath));
+    }
+
+    public function testStoreTmp__restartsExistingFile()
+    {
+        Config::set('app.uploads_max_file_size', 6 / (1024 * 1024));
+
+        $filename = 'restart.txt';
+        $uploader = new ChunkUploadStrategy(['txt']);
+        $relFilePath = $this->getTmpFilePath($uploader, $filename);
+        Storage::put($relFilePath, base64_encode('old temporary contents'));
+        $data = base64_encode('new');
+
+        $uploader->storeTmp(new \Illuminate\Http\Request([
+            'filename' => $filename,
+            'part' => 0,
+            'base64data' => 'data:application/octet-stream;base64,' . $data,
+        ]));
+
+        $this->assertSame($data, Storage::get($relFilePath));
     }
 
     public function testStoreTmp__chunkSizeExceeded()

@@ -7,13 +7,12 @@ use App\Exceptions\ImageEditorException;
 use App\Image;
 use App\Services\ImageEditor\ImageEditorPdf;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ImageEditorPdfTest extends TestCase
 {
-    /**
-     * @dataProvider bleedProvider
-     */
+    #[DataProvider('bleedProvider')]
     public function testGetRelPath(int|null $bleed): void
     {
         $image = $this->mock(Image::class);
@@ -34,9 +33,7 @@ class ImageEditorPdfTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider resolutionProvider
-     */
+    #[DataProvider('resolutionProvider')]
     public function testGetRelPath__invalidResolution(int|null $resolution): void
     {
         $image = $this->mock(Image::class);
@@ -52,9 +49,7 @@ class ImageEditorPdfTest extends TestCase
         new ImageEditorPdf($image, false, $resolution);
     }
 
-    /**
-     * @dataProvider bleedProvider
-     */
+    #[DataProvider('bleedProvider')]
     public function testGenerateIfNeeded(int|null $bleed): void
     {
         copy(

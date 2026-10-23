@@ -6,6 +6,7 @@ namespace Tests\Unit\Services\ImageEditor;
 use App\Image;
 use App\Services\ImageEditor\ImageEditorJpeg;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ImageEditorJpegTest extends TestCase
@@ -60,9 +61,7 @@ class ImageEditorJpegTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider generateBleedProvider
-     */
+    #[DataProvider('generateBleedProvider')]
     public function testGenerateIfNeeded(int|null $bleed): void
     {
         $image = factory(Image::class)->make([

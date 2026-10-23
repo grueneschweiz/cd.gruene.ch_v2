@@ -13,7 +13,7 @@ class ImageEditorFactoryTest extends TestCase
         $factory = new ImageEditorFactory();
 
         $imageEditor = $factory->make(
-            $this->createMock(\App\Image::class),
+            $this->createStub(\App\Image::class),
             'pdf',
             true,
             300,
@@ -28,7 +28,7 @@ class ImageEditorFactoryTest extends TestCase
         $factory = new ImageEditorFactory();
 
         $imageEditor = $factory->make(
-            $this->createMock(\App\Image::class),
+            $this->createStub(\App\Image::class),
             'png'
         );
 
@@ -40,7 +40,7 @@ class ImageEditorFactoryTest extends TestCase
         $factory = new ImageEditorFactory();
 
         $imageEditor = $factory->make(
-            $this->createMock(\App\Image::class),
+            $this->createStub(\App\Image::class),
             'jpeg'
         );
 
@@ -55,7 +55,7 @@ class ImageEditorFactoryTest extends TestCase
         $this->expectExceptionMessage('Unknown file format: invalid');
 
         $factory->make(
-            $this->createMock(\App\Image::class),
+            $this->createStub(\App\Image::class),
             'invalid'
         );
     }

@@ -176,7 +176,6 @@ class LogoPackageService
         $relPath = $this->logo->getRelTemplateFilePath();
         $rootPath = $this->relToAbsPath($relPath);
 
-        /** @var \SplFileInfo[] $files */
         $files = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($rootPath),
             \RecursiveIteratorIterator::LEAVES_ONLY

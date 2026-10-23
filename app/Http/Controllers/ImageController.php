@@ -37,7 +37,7 @@ class ImageController extends Controller
     /**
      * Return paginated list of all shareable raw images.
      *
-     * @return Response
+        * @return \Illuminate\Pagination\LengthAwarePaginator<int, Image>
      */
     public function indexRaw()
     {

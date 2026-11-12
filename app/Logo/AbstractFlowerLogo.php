@@ -177,18 +177,58 @@ abstract class AbstractFlowerLogo implements LogoCompositor
         // draw background
         $im->newImage($width, $height, $bgColor);
 
-        // add text
-        $draw->setFillColor($fontColor);
-        $draw->setGravity(Imagick::GRAVITY_NORTHWEST);
-        $im->annotateImage(
-            $draw,
-            $padding['left'],
-            $padding['top'],
-            0,
-            $text
-        );
+        // Render the text on a scratch image and trim it to the actual glyph
+        // bounds. Positioning the trimmed image explicitly keeps the text
+        // centered in the bar regardless of font metrics or ImageMagick's
+        // annotateImage() positioning semantics.
+        $textIm = $this->renderSublineText($draw, $fontSize, $textDims, $text, $fontColor);
+
+        if ($textIm->getImageWidth() > 0 && $textIm->getImageHeight() > 0) {
+            $im->compositeImage(
+                $textIm,
+                Imagick::COMPOSITE_DEFAULT,
+                (int) ($padding['left'] + ($textDims['textWidth'] - $textIm->getImageWidth()) / 2),
+                (int) (($height - $textIm->getImageHeight()) / 2)
+            );
+        }
 
         $this->sublineIm = $im;
+    }
+
+    /**
+     * Renders the subline text on a scratch canvas and trims it to the
+     * actual glyph bounding box.
+     *
+     * @param  ImagickDraw  $draw
+     * @param  float  $fontSize
+     * @param  array  $textDims
+     * @param  string  $text
+     * @param  ImagickPixel  $fontColor
+     * @return Imagick
+     */
+    private function renderSublineText(
+        ImagickDraw $draw,
+        float       $fontSize,
+        array       $textDims,
+        string      $text,
+        ImagickPixel $fontColor
+    ): Imagick
+    {
+        $margin = $fontSize;
+
+        $scratch = new Imagick();
+        $scratch->newImage(
+            (int) ceil($textDims['textWidth'] + 2 * $margin),
+            (int) ceil($textDims['textHeight'] + 2 * $margin),
+            'transparent'
+        );
+
+        $draw->setFillColor($fontColor);
+        $draw->setGravity(Imagick::GRAVITY_NORTHWEST);
+        $scratch->annotateImage($draw, $margin, $margin, 0, $text);
+        $scratch->trimImage(0);
+
+        return $scratch;
     }
 
     private static function getSublineFontPath(): string
